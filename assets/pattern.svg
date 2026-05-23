@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160">
+  <!-- Alpona Padma (lotus) tile — Bengali festival floor motif -->
+  <!-- All strokes in #C8BFB2 on cream #F4F1EB → ~6% opacity emboss effect -->
+  <g transform="translate(80,80)" fill="none" stroke="#C8BFB2" stroke-width="0.7">
+
+    <!-- ── Outer dotted ring ── -->
+    <circle cx="0" cy="0" r="70" stroke-dasharray="1.4 5.2" stroke-width="0.7"/>
+
+    <!-- ── Outer ring guideline ── -->
+    <circle cx="0" cy="0" r="60" stroke-width="0.4" stroke-dasharray="2 6"/>
+
+    <!-- ── 8 outer petals (elongated ellipses, rotated every 45°) ── -->
+    <ellipse rx="9" ry="30" transform="rotate(0)"   cx="0" cy="-38"/>
+    <ellipse rx="9" ry="30" transform="rotate(45)"  cx="0" cy="-38"/>
+    <ellipse rx="9" ry="30" transform="rotate(90)"  cx="0" cy="-38"/>
+    <ellipse rx="9" ry="30" transform="rotate(135)" cx="0" cy="-38"/>
+    <ellipse rx="9" ry="30" transform="rotate(180)" cx="0" cy="-38"/>
+    <ellipse rx="9" ry="30" transform="rotate(225)" cx="0" cy="-38"/>
+    <ellipse rx="9" ry="30" transform="rotate(270)" cx="0" cy="-38"/>
+    <ellipse rx="9" ry="30" transform="rotate(315)" cx="0" cy="-38"/>
+
+    <!-- ── 8 inner petals (shorter, between outer) ── -->
+    <ellipse rx="6" ry="20" transform="rotate(22.5)"  cx="0" cy="-26"/>
+    <ellipse rx="6" ry="20" transform="rotate(67.5)"  cx="0" cy="-26"/>
+    <ellipse rx="6" ry="20" transform="rotate(112.5)" cx="0" cy="-26"/>
+    <ellipse rx="6" ry="20" transform="rotate(157.5)" cx="0" cy="-26"/>
+    <ellipse rx="6" ry="20" transform="rotate(202.5)" cx="0" cy="-26"/>
+    <ellipse rx="6" ry="20" transform="rotate(247.5)" cx="0" cy="-26"/>
+    <ellipse rx="6" ry="20" transform="rotate(292.5)" cx="0" cy="-26"/>
+    <ellipse rx="6" ry="20" transform="rotate(337.5)" cx="0" cy="-26"/>
+
+    <!-- ── Dot accents at outer petal tips ── -->
+    <circle r="1.2" cx="0"     cy="-67" fill="#C8BFB2" stroke="none"/>
+    <circle r="1.2" cx="47.4"  cy="-47.4" fill="#C8BFB2" stroke="none" transform="rotate(45)  translate(0,-67) rotate(-45)"/>
+    <circle r="1.2" transform="rotate(0)   translate(0,-67)" fill="#C8BFB2" stroke="none"/>
+    <circle r="1.2" transform="rotate(45)  translate(0,-67)" fill="#C8BFB2" stroke="none"/>
+    <circle r="1.2" transform="rotate(90)  translate(0,-67)" fill="#C8BFB2" stroke="none"/>
+    <circle r="1.2" transform="rotate(135) translate(0,-67)" fill="#C8BFB2" stroke="none"/>
+    <circle r="1.2" transform="rotate(180) translate(0,-67)" fill="#C8BFB2" stroke="none"/>
+    <circle r="1.2" transform="rotate(225) translate(0,-67)" fill="#C8BFB2" stroke="none"/>
+    <circle r="1.2" transform="rotate(270) translate(0,-67)" fill="#C8BFB2" stroke="none"/>
+    <circle r="1.2" transform="rotate(315) translate(0,-67)" fill="#C8BFB2" stroke="none"/>
+
+    <!-- ── Inner mid ring ── -->
+    <circle cx="0" cy="0" r="18" stroke-width="0.6"/>
+
+    <!-- ── Centre circle ── -->
+    <circle cx="0" cy="0" r="8" stroke-width="0.8"/>
+
+    <!-- ── Centre dot ── -->
+    <circle cx="0" cy="0" r="2.2" fill="#C8BFB2" stroke="none"/>
+
+    <!-- ── 8 stamen lines from centre ── -->
+    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.5"/>
+    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.5" transform="rotate(45)"/>
+    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.5" transform="rotate(90)"/>
+    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.5" transform="rotate(135)"/>
+    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.5" transform="rotate(180)"/>
+    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.5" transform="rotate(225)"/>
+    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.5" transform="rotate(270)"/>
+    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.5" transform="rotate(315)"/>
+
+    <!-- ── Small dot at each stamen tip ── -->
+    <circle r="1" transform="rotate(0)   translate(0,-17)" fill="#C8BFB2" stroke="none"/>
+    <circle r="1" transform="rotate(45)  translate(0,-17)" fill="#C8BFB2" stroke="none"/>
+    <circle r="1" transform="rotate(90)  translate(0,-17)" fill="#C8BFB2" stroke="none"/>
+    <circle r="1" transform="rotate(135) translate(0,-17)" fill="#C8BFB2" stroke="none"/>
+    <circle r="1" transform="rotate(180) translate(0,-17)" fill="#C8BFB2" stroke="none"/>
+    <circle r="1" transform="rotate(225) translate(0,-17)" fill="#C8BFB2" stroke="none"/>
+    <circle r="1" transform="rotate(270) translate(0,-17)" fill="#C8BFB2" stroke="none"/>
+    <circle r="1" transform="rotate(315) translate(0,-17)" fill="#C8BFB2" stroke="none"/>
+
+  </g>
+</svg>
