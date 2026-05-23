@@ -69,7 +69,7 @@
     [data-reveal-group].visible > *:nth-child(3) { opacity:1; transform:none; transition-delay:.25s; }
 
     /* ─────────────────────────────────────────
-       NAV
+       NAV  — always solid, no hero to overlay
     ───────────────────────────────────────── */
     .nav {
       position: fixed;
@@ -80,13 +80,13 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 2.5rem;
-      color: #fff;
-      transition: background .4s ease, color .4s ease, border-color .4s ease;
-    }
-    .nav.solid {
       background: var(--cream);
       color: var(--ink);
       border-bottom: 1px solid var(--rule);
+      transition: box-shadow .3s ease;
+    }
+    .nav.scrolled {
+      box-shadow: 0 1px 18px rgba(26,23,20,.06);
     }
 
     .nav__logo {
@@ -107,11 +107,10 @@
       font-size: .7rem;
       letter-spacing: .1em;
       color: inherit;
-      opacity: .75;
+      opacity: .6;
       transition: opacity .2s;
     }
     .nav__links a:hover { opacity: 1; }
-    .nav.solid .nav__links a { opacity: 1; }
 
     .nav__reserve {
       opacity: 1 !important;
@@ -206,81 +205,68 @@
     }
 
     /* ─────────────────────────────────────────
-       HERO
-       78vh — so the info bar below peeks
-       into view, inviting the first scroll.
+       OPENING  — typographic, no image.
+       Inspired by Ester's text-first homepage.
     ───────────────────────────────────────── */
-    .hero {
-      position: relative;
-      height: 78vh;
-      min-height: 520px;
+    .opening {
+      padding: calc(var(--nav-h) + 5rem) 2.5rem 5.5rem;
+      border-bottom: 1px solid var(--rule);
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      overflow: hidden;
-      background: #1a1410;
+      gap: 0;
     }
 
-    .hero__bg {
-      position: absolute;
-      inset: 0;
-    }
-    .hero__bg img { filter: brightness(.62); }
-    .hero__bg::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(12,8,5,.9)  0%,
-        rgba(12,8,5,.2)  55%,
-        transparent      100%
-      );
+    .opening__loc {
+      font-size: .68rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2.25rem;
     }
 
-    .hero__content {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: flex-end;
-      gap: 2rem;
-      padding: 0 2.5rem 2.5rem;
-      color: #fff;
-    }
-
-    .hero__tagline {
+    .opening__title {
       font-family: var(--serif);
-      font-size: clamp(2.6rem, 5.5vw, 5rem);
+      font-size: clamp(3.8rem, 9vw, 9rem);
       font-weight: 300;
       font-style: italic;
-      line-height: 1.08;
+      line-height: .98;
+      margin-bottom: 4rem;
+      /* subtle reveal already handled by data-reveal */
     }
 
-    .hero__meta {
-      text-align: right;
+    .opening__row {
       display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 1.1rem;
-      padding-bottom: .15rem;
+      align-items: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--rule);
+      padding-top: 2rem;
     }
-    .hero__hours {
-      font-size: .68rem;
-      letter-spacing: .1em;
-      line-height: 1.9;
-      color: rgba(255,255,255,.6);
+
+    .opening__detail {
+      font-size: .75rem;
+      letter-spacing: .08em;
+      color: var(--muted);
     }
-    .hero__book {
+
+    .opening__sep {
+      width: 1px;
+      height: 1rem;
+      background: var(--rule);
+      flex-shrink: 0;
+    }
+
+    .opening__reserve {
       font-size: .7rem;
-      letter-spacing: .16em;
+      letter-spacing: .18em;
       text-transform: uppercase;
-      color: #fff;
-      border-bottom: 1px solid rgba(255,255,255,.55);
+      color: var(--ink);
+      border-bottom: 1px solid var(--ink);
       padding-bottom: 2px;
-      transition: opacity .2s;
+      margin-left: auto;   /* pushes to far right */
+      transition: color .2s, border-color .2s;
     }
-    .hero__book:hover { opacity: .65; }
+    .opening__reserve:hover { color: var(--muted); border-color: var(--muted); }
 
     /* ─────────────────────────────────────────
        SHARED
@@ -598,15 +584,14 @@
       .nav__links { display: none; }
       .nav__burger { display: flex; }
 
-      /* hero */
-      .hero { height: 72vh; }
-      .hero__content {
-        grid-template-columns: 1fr;
-        padding: 0 1.5rem 2rem;
-        gap: 1.5rem;
+      /* opening */
+      .opening {
+        padding: calc(var(--nav-h) + 3rem) 1.5rem 3.5rem;
       }
-      .hero__meta { align-items: flex-start; text-align: left; }
-      .hero__tagline { font-size: clamp(2.2rem, 8vw, 3rem); }
+      .opening__title { font-size: clamp(3rem, 14vw, 5rem); margin-bottom: 2.5rem; }
+      .opening__row   { gap: 1.1rem; }
+      .opening__sep   { display: none; }
+      .opening__reserve { margin-left: 0; margin-top: .5rem; }
 
       /* story */
       .story {
@@ -704,31 +689,24 @@
     </button>
   </header>
 
-  <!-- ══════════════ HERO ══════════════════ -->
-  <section class="hero">
-    <div class="hero__bg">
-      <img src="assets/images/hero-interior.jpg"
-           alt="Kolkata Social — warmly lit dining room, Newtown"
-           loading="eager" fetchpriority="high">
-    </div>
-
-    <div class="hero__content">
-      <h1 class="hero__tagline">
-        A love letter<br>to Bengali cuisine.
-      </h1>
-      <div class="hero__meta">
-        <p class="hero__hours">
-          Dinner · Tue – Sat · from 5:30pm<br>
-          Lunch · Saturday · 11:30am – 2pm<br>
-          528 King St, Newtown
-        </p>
-        <a href="https://www.sevenrooms.com/reservations/kolkatasocialnewtown"
-           target="_blank" rel="noopener" class="hero__book">Reserve a Table →</a>
-      </div>
+  <!-- ══════════════ OPENING ═════════════════ -->
+  <section class="opening">
+    <p class="opening__loc">Bengali Restaurant &amp; Bar · Newtown, Sydney</p>
+    <h1 class="opening__title" data-reveal>
+      A love letter<br>to Bengali<br>cuisine.
+    </h1>
+    <div class="opening__row">
+      <span class="opening__detail">Dinner · Tue – Sat · from 5:30pm</span>
+      <span class="opening__sep" aria-hidden="true"></span>
+      <span class="opening__detail">Lunch · Saturday · 11:30am – 2pm</span>
+      <span class="opening__sep" aria-hidden="true"></span>
+      <span class="opening__detail">528 King St, Newtown</span>
+      <a href="https://www.sevenrooms.com/reservations/kolkatasocialnewtown"
+         target="_blank" rel="noopener" class="opening__reserve">
+        Reserve a Table →
+      </a>
     </div>
   </section>
-
-  <hr class="rule">
 
   <!-- ══════════════ STORY ═════════════════ -->
   <div class="story" id="story">
@@ -939,10 +917,10 @@
   </script>
 
   <script>
-    // ── Nav solid on scroll ──────────────────
+    // ── Nav shadow on scroll ─────────────────
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
-      nav.classList.toggle('solid', window.scrollY > 60);
+      nav.classList.toggle('scrolled', window.scrollY > 20);
     }, { passive: true });
 
     // ── Hamburger / drawer ───────────────────
