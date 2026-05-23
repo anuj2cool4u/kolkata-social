@@ -4,36 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kolkata Social | Bengali Restaurant, Newtown Sydney</title>
-  <meta name="description" content="Kolkata Social is a Bengali restaurant in Newtown, Sydney led by Chef Ahana Dutt. A love letter to Bengali cuisine through a third culture lens.">
+  <meta name="description" content="Kolkata Social is a Bengali restaurant in Newtown, Sydney led by Chef Ahana Dutt. A love letter to Bengali cuisine through a third culture lens. 528 King St, Newtown.">
   <meta property="og:title" content="Kolkata Social | Bengali Restaurant, Newtown Sydney">
   <meta property="og:description" content="A love letter to Bengali cuisine through a third culture lens. 528 King St, Newtown.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.kolkatasocial.com.au">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400&display=swap" rel="stylesheet">
 
   <style>
-    /* ─── TOKENS ─────────────────────────────────────────────── */
+    /* ── tokens ─────────────────────────────── */
     :root {
-      --bg:        #F7F4EE;
-      --bg-warm:   #EDE8DF;
-      --ink:       #1C1A17;
-      --ink-dim:   #6B6560;
-      --gold:      #B8812A;
-      --white:     #FFFFFF;
-      --hero-dark: #241c16;       /* fallback when hero image fails */
-      --nav-h:     70px;
+      --cream: #F5F2EC;
+      --ink:   #191714;
+      --mid:   #7A746E;
       --serif: 'Cormorant Garamond', Georgia, serif;
       --sans:  'DM Sans', system-ui, sans-serif;
+      --nav-h: 64px;
+      --mob-bar: 58px;   /* height of mobile sticky CTA */
     }
 
-    /* ─── RESET ──────────────────────────────────────────────── */
+    /* ── reset ──────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 16px; }
+    html { scroll-behavior: smooth; }
     body {
-      background: var(--bg);
+      background: var(--cream);
       color: var(--ink);
       font-family: var(--sans);
       font-weight: 300;
@@ -43,407 +39,436 @@
     a { text-decoration: none; color: inherit; }
     img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
-    /* ─── NAVIGATION ─────────────────────────────────────────── */
+    /* ── nav ─────────────────────────────────── */
     .nav {
       position: fixed;
-      inset: 0 0 auto 0;
-      z-index: 900;
+      inset: 0 0 auto;
       height: var(--nav-h);
+      z-index: 900;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 3rem;
-      /* transparent over hero; JS adds .is-scrolled */
-      background: transparent;
-      color: var(--white);
-      transition: background 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+      padding: 0 2.5rem;
+      color: #fff;
+      /* starts transparent over hero */
+      transition: background .35s, color .35s, border-color .35s;
     }
-    .nav.is-scrolled {
-      background: var(--bg);
+    .nav.solid {
+      background: var(--cream);
       color: var(--ink);
-      box-shadow: 0 1px 0 rgba(28,26,23,.10);
+      border-bottom: 1px solid rgba(25,23,20,.1);
     }
 
     .nav__logo {
       font-family: var(--serif);
-      font-size: 1.05rem;
-      letter-spacing: .16em;
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: .14em;
       text-transform: uppercase;
-      color: inherit;
     }
 
-    .nav__links {
+    .nav__list {
       list-style: none;
       display: flex;
       align-items: center;
       gap: 2.25rem;
     }
-    .nav__links a {
+    .nav__list a {
       font-size: .72rem;
-      font-weight: 400;
-      letter-spacing: .13em;
-      text-transform: uppercase;
+      letter-spacing: .1em;
       color: inherit;
-      opacity: .85;
-      transition: opacity .2s, color .2s;
+      opacity: .8;
+      transition: opacity .2s;
     }
-    .nav__links a:hover { opacity: 1; color: var(--gold); }
-    .nav.is-scrolled .nav__links a { opacity: 1; }
+    .nav__list a:hover { opacity: 1; }
+    .nav.solid .nav__list a { opacity: 1; }
 
-    .nav__book {
-      font-size: .70rem;
-      font-weight: 500;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      padding: .55rem 1.35rem;
-      border: 1px solid currentColor;
-      color: inherit !important;
+    /* reserve link is slightly more prominent */
+    .nav__reserve {
       opacity: 1 !important;
-      transition: background .25s, color .25s, border-color .25s;
-    }
-    .nav__book:hover {
-      background: var(--white);
-      color: var(--ink) !important;
-      border-color: var(--white);
-    }
-    .nav.is-scrolled .nav__book:hover {
-      background: var(--ink);
-      color: var(--white) !important;
-      border-color: var(--ink);
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 1px;
     }
 
-    /* hamburger – always visible on mobile */
+    /* hamburger */
     .nav__burger {
       display: none;
       flex-direction: column;
       justify-content: center;
       gap: 5px;
-      width: 36px;
-      height: 36px;
-      cursor: pointer;
+      width: 36px; height: 36px;
       background: none;
       border: none;
-      padding: 4px;
+      cursor: pointer;
       color: inherit;
+      padding: 4px;
     }
     .nav__burger span {
       display: block;
-      width: 22px;
-      height: 1.5px;
+      width: 22px; height: 1.5px;
       background: currentColor;
       border-radius: 1px;
-      transition: transform .3s ease, opacity .3s ease;
+      transition: transform .3s, opacity .3s;
       transform-origin: center;
     }
-    /* animated X when open */
-    .nav__burger.is-open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-    .nav__burger.is-open span:nth-child(2) { opacity: 0; }
-    .nav__burger.is-open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .nav__burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav__burger.open span:nth-child(2) { opacity: 0; }
+    .nav__burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-    /* ─── MOBILE DRAWER ──────────────────────────────────────── */
+    /* ── mobile drawer ───────────────────────── */
     .drawer {
       position: fixed;
       inset: 0;
       z-index: 800;
-      background: var(--bg);
+      background: var(--cream);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 2rem;
-      /* hidden off-screen to the right */
       transform: translateX(100%);
-      transition: transform .4s cubic-bezier(.4,0,.2,1);
+      transition: transform .38s cubic-bezier(.4,0,.2,1);
     }
-    .drawer.is-open { transform: translateX(0); }
+    .drawer.open { transform: none; }
     .drawer a {
       font-family: var(--serif);
-      font-size: 2.4rem;
+      font-size: 2.5rem;
       font-weight: 300;
-      letter-spacing: .04em;
       color: var(--ink);
-      transition: color .2s;
+      letter-spacing: .03em;
     }
-    .drawer a:hover { color: var(--gold); }
-    .drawer__book {
-      font-family: var(--sans) !important;
-      font-size: .72rem !important;
-      letter-spacing: .18em !important;
-      text-transform: uppercase;
-      padding: .85rem 2.25rem;
-      border: 1px solid var(--ink);
-      margin-top: .75rem;
+    .drawer a:hover { font-style: italic; }
+
+    /* ── mobile sticky reserve bar ───────────── */
+    .mobile-reserve {
+      display: none;
+    }
+    @media (max-width: 960px) {
+      .mobile-reserve {
+        display: flex;
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        z-index: 700;
+        height: var(--mob-bar);
+        align-items: center;
+        justify-content: center;
+        background: var(--ink);
+        color: #fff;
+        font-size: .72rem;
+        letter-spacing: .18em;
+        text-transform: uppercase;
+        border-top: 1px solid rgba(255,255,255,.08);
+      }
+      body { padding-bottom: var(--mob-bar); }
     }
 
-    /* ─── HERO ───────────────────────────────────────────────── */
+    /* ── hero ────────────────────────────────── */
     .hero {
       position: relative;
-      height: 100vh;
-      min-height: 580px;
+      height: 100svh;
+      min-height: 560px;
+      background: #1a1410;     /* fallback if image blocked */
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      background: var(--hero-dark);   /* solid fallback if image fails */
       overflow: hidden;
     }
-
     .hero__bg {
       position: absolute;
       inset: 0;
-      z-index: 0;
     }
-    .hero__bg img { filter: brightness(.65); }
-
-    /* gradient so text is ALWAYS readable regardless of image */
-    .hero__gradient {
+    .hero__bg img { filter: brightness(.6); }
+    /* always-on gradient so text reads over any image */
+    .hero__bg::after {
+      content: '';
       position: absolute;
       inset: 0;
-      z-index: 1;
-      background: linear-gradient(
-        to top,
-        rgba(20,14,10,.85) 0%,
-        rgba(20,14,10,.30) 50%,
-        rgba(20,14,10,.05) 100%
-      );
+      background: linear-gradient(to top,
+        rgba(15,10,7,.88) 0%,
+        rgba(15,10,7,.2)  55%,
+        transparent       100%);
     }
 
-    .hero__content {
+    .hero__body {
       position: relative;
       z-index: 2;
-      padding: 0 4rem 4.5rem;
-      color: var(--white);
+      padding: 0 3rem 3.5rem;
+      color: #fff;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: flex-end;
+      gap: 2rem;
     }
 
-    .hero__tag {
+    .hero__left {}
+
+    .hero__sub {
       font-size: .68rem;
-      letter-spacing: .26em;
+      letter-spacing: .22em;
       text-transform: uppercase;
-      opacity: .75;
-      margin-bottom: 1.1rem;
+      opacity: .65;
+      margin-bottom: 1rem;
     }
 
     .hero__title {
       font-family: var(--serif);
-      font-size: clamp(2.5rem, 5.5vw, 5rem);
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
       font-weight: 300;
-      line-height: 1.08;
-      margin-bottom: 2rem;
-      max-width: 680px;
+      line-height: 1.05;
+      font-style: italic;
     }
-    .hero__title em { font-style: italic; }
 
-    .hero__cta {
-      display: inline-block;
-      font-size: .72rem;
-      font-weight: 500;
-      letter-spacing: .18em;
+    .hero__right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 1rem;
+      text-align: right;
+      padding-bottom: .2rem;
+    }
+
+    .hero__hours {
+      font-size: .7rem;
+      letter-spacing: .1em;
+      line-height: 1.8;
+      opacity: .65;
+    }
+
+    .hero__book {
+      font-size: .7rem;
+      letter-spacing: .16em;
       text-transform: uppercase;
-      padding: .9rem 2.25rem;
-      border: 1px solid rgba(255,255,255,.7);
-      color: var(--white);
-      transition: background .25s, color .25s, border-color .25s;
+      border-bottom: 1px solid rgba(255,255,255,.6);
+      padding-bottom: 2px;
+      color: #fff;
+      transition: opacity .2s;
     }
-    .hero__cta:hover {
-      background: var(--white);
-      color: var(--ink);
-      border-color: var(--white);
+    .hero__book:hover { opacity: .7; }
+
+    /* ── divider line ────────────────────────── */
+    .rule {
+      border: none;
+      border-top: 1px solid rgba(25,23,20,.12);
+      margin: 0;
     }
 
-    /* ─── INTRO STRIP ────────────────────────────────────────── */
-    .strip {
-      background: var(--ink);
-      color: var(--white);
+    /* ── quick-info bar (like Cairo's text after image) ── */
+    .info-bar {
       padding: 1.6rem 3rem;
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
-      justify-content: center;
-      gap: 1.5rem 2rem;
+      gap: 0;
+      font-size: .72rem;
+      letter-spacing: .1em;
+      flex-wrap: wrap;
     }
-    .strip__item {
+    .info-bar__item {
       display: flex;
       align-items: center;
-      gap: .55rem;
-      font-size: .70rem;
-      letter-spacing: .13em;
-      text-transform: uppercase;
-      white-space: nowrap;
+      gap: 1.5rem;
+      color: var(--mid);
     }
-    .strip__dot {
-      width: 4px; height: 4px;
-      border-radius: 50%;
-      background: var(--gold);
-      flex-shrink: 0;
+    .info-bar__item + .info-bar__item::before {
+      content: '';
+      display: inline-block;
+      width: 1px;
+      height: 1rem;
+      background: rgba(25,23,20,.2);
+      margin-right: 1.5rem;
     }
-    .strip__sep {
-      width: 1px; height: 1.4rem;
-      background: rgba(255,255,255,.15);
-    }
+    .info-bar__item a { color: var(--ink); border-bottom: 1px solid currentColor; padding-bottom: 1px; }
 
-    /* ─── SHARED SECTION HELPERS ─────────────────────────────── */
-    .section { padding: 6rem 0; }
-    .section--warm { background: var(--bg-warm); }
-    .section--dark  { background: var(--ink); color: var(--white); }
+    /* ── shared section ──────────────────────── */
+    .section { padding: 6rem 3rem; }
+    .section--dark { background: var(--ink); color: #fff; }
 
-    .container {
-      max-width: 1260px;
-      margin: 0 auto;
-      padding: 0 3rem;
-    }
-
-    .eyebrow {
-      font-size: .63rem;
-      letter-spacing: .28em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.1rem;
-    }
-    .section--dark .eyebrow { color: var(--gold); }
-
-    .h2 {
-      font-family: var(--serif);
-      font-size: clamp(2rem, 3.5vw, 3.1rem);
-      font-weight: 300;
-      line-height: 1.2;
-    }
-    .h2 em { font-style: italic; }
-
-    .body-text {
-      font-size: 1rem;
-      line-height: 1.85;
-      color: var(--ink-dim);
-    }
-    .body-text strong { color: var(--ink); font-weight: 400; }
-    .section--dark .body-text { color: rgba(255,255,255,.55); }
-
-    .link-arrow {
-      display: inline-flex;
+    /* ── story ───────────────────────────────── */
+    .story__grid {
+      display: grid;
+      grid-template-columns: 5fr 4fr;
+      gap: 5rem;
       align-items: center;
-      gap: .45rem;
-      font-size: .72rem;
-      font-weight: 500;
-      letter-spacing: .15em;
+    }
+
+    .story__text {}
+
+    .story__overline {
+      font-size: .63rem;
+      letter-spacing: .24em;
       text-transform: uppercase;
-      border-bottom: 1px solid currentColor;
+      color: var(--mid);
+      margin-bottom: 1.5rem;
+    }
+
+    .story__heading {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 3.5vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.15;
+      margin-bottom: 2rem;
+    }
+    .story__heading em { font-style: italic; }
+
+    .story__body {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: var(--mid);
+      max-width: 52ch;
+    }
+    .story__body + .story__body { margin-top: 1rem; }
+    .story__body strong { color: var(--ink); font-weight: 400; }
+
+    .story__link {
+      display: inline-block;
+      margin-top: 2rem;
+      font-size: .7rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--ink);
       padding-bottom: 2px;
       transition: color .2s, border-color .2s;
     }
-    .link-arrow:hover { color: var(--gold); border-color: var(--gold); }
+    .story__link:hover { color: var(--mid); border-color: var(--mid); }
 
-    .btn {
-      display: inline-block;
-      font-size: .72rem;
-      font-weight: 500;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      padding: .9rem 2.25rem;
-      cursor: pointer;
-    }
-    .btn--dark   { background: var(--ink); color: var(--white); transition: background .25s; }
-    .btn--dark:hover { background: var(--gold); }
-    .btn--outline-white {
-      border: 1px solid rgba(255,255,255,.35);
-      color: var(--white);
-      transition: border-color .25s, background .25s;
-    }
-    .btn--outline-white:hover { border-color: var(--white); background: rgba(255,255,255,.06); }
-
-    /* ─── ABOUT ──────────────────────────────────────────────── */
-    .about__grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5.5rem;
-      align-items: center;
-    }
-    .about__img {
-      height: 580px;
+    .story__img {
+      height: 560px;
       overflow: hidden;
     }
-    .about__img img { transition: transform .7s ease; }
-    .about__img:hover img { transform: scale(1.04); }
+    .story__img img { transition: transform .7s ease; }
+    .story__img:hover img { transform: scale(1.03); }
 
-    .about__copy { display: flex; flex-direction: column; gap: 1rem; }
-    .about__copy .h2 { margin-bottom: .5rem; }
-    .about__copy .link-arrow { margin-top: .5rem; align-self: flex-start; }
-
-    /* ─── FOOD GRID ──────────────────────────────────────────── */
+    /* ── food ────────────────────────────────── */
     .food__header {
       display: flex;
-      align-items: flex-end;
       justify-content: space-between;
-      gap: 1.5rem;
+      align-items: baseline;
       margin-bottom: 3rem;
+      gap: 1rem;
       flex-wrap: wrap;
     }
+    .food__heading {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+    }
+    .food__heading em { font-style: italic; }
 
+    .food__menu-link {
+      font-size: .7rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--mid);
+      border-bottom: 1px solid var(--mid);
+      padding-bottom: 1px;
+      transition: color .2s, border-color .2s;
+    }
+    .food__menu-link:hover { color: var(--ink); border-color: var(--ink); }
+
+    /* editorial layout: one large + two stacked */
     .food__grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
+      grid-template-columns: 3fr 2fr;
+      grid-template-rows: auto auto;
+      gap: 1rem;
     }
-    .food-card__img {
-      height: 440px;
+    .food__main {
+      grid-row: 1 / 3;
+      height: 620px;
       overflow: hidden;
     }
-    .food-card__img img { transition: transform .55s ease; }
-    .food-card:hover .food-card__img img { transform: scale(1.06); }
-    .food-card__label {
-      padding: .9rem 0 0;
-      font-family: var(--serif);
-      font-size: 1.1rem;
-      font-style: italic;
-      font-weight: 300;
-      color: var(--ink-dim);
-    }
+    .food__main img  { transition: transform .6s ease; }
+    .food__main:hover img { transform: scale(1.04); }
 
-    /* ─── QUOTE ──────────────────────────────────────────────── */
-    .quote { text-align: center; padding: 5rem 0; }
-    .quote blockquote {
+    .food__side {
+      height: 300px;
+      overflow: hidden;
+    }
+    .food__side img { transition: transform .6s ease; }
+    .food__side:hover img { transform: scale(1.04); }
+
+    /* ── pull quote ──────────────────────────── */
+    .quote {
+      padding: 5rem 3rem;
+      border-top: 1px solid rgba(25,23,20,.1);
+      border-bottom: 1px solid rgba(25,23,20,.1);
+    }
+    .quote__text {
       font-family: var(--serif);
-      font-size: clamp(1.4rem, 2.6vw, 2.3rem);
-      font-style: italic;
+      font-size: clamp(1.5rem, 2.8vw, 2.5rem);
       font-weight: 300;
-      line-height: 1.55;
+      font-style: italic;
+      line-height: 1.5;
       max-width: 800px;
-      margin: 0 auto 1.75rem;
+      margin: 0 auto;
+      text-align: center;
     }
-    .quote cite {
-      font-family: var(--sans);
+    .quote__cite {
+      display: block;
+      text-align: center;
+      margin-top: 1.5rem;
       font-size: .63rem;
-      font-style: normal;
-      letter-spacing: .26em;
+      letter-spacing: .22em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--mid);
     }
 
-    /* ─── EVENTS ─────────────────────────────────────────────── */
+    /* ── events ──────────────────────────────── */
     .events__grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 5.5rem;
+      gap: 5rem;
       align-items: center;
     }
-    .events__copy { display: flex; flex-direction: column; gap: 1rem; }
-    .events__copy .h2 { margin-bottom: .5rem; }
     .events__img {
-      height: 520px;
+      height: 500px;
       overflow: hidden;
     }
     .events__img img { transition: transform .7s ease; }
-    .events__img:hover img { transform: scale(1.04); }
+    .events__img:hover img { transform: scale(1.03); }
 
-    /* ─── INFO / HOURS ───────────────────────────────────────── */
-    .info__grid {
-      display: grid;
-      grid-template-columns: 1.1fr 1fr 1fr;
-      gap: 4rem;
+    .events__text {}
+    .events__overline {
+      font-size: .63rem;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 1.5rem;
+    }
+    .events__heading {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3vw, 3rem);
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 1.75rem;
+    }
+    .events__heading em { font-style: italic; }
+    .events__body {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: var(--mid);
+      margin-bottom: 1rem;
+    }
+    .events__cta {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: .7rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 2px;
     }
 
-    .info-block h3 {
+    /* ── hours & contact (dark) ──────────────── */
+    .contact__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4rem;
+    }
+    .contact__block h3 {
       font-size: .63rem;
-      letter-spacing: .28em;
+      letter-spacing: .24em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: rgba(255,255,255,.35);
       margin-bottom: 1.75rem;
       font-weight: 400;
     }
@@ -451,410 +476,413 @@
     .hours-row {
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
       gap: 1rem;
-      font-size: .86rem;
+      font-size: .875rem;
       padding: .6rem 0;
       border-bottom: 1px solid rgba(255,255,255,.07);
     }
     .hours-row:first-of-type { border-top: 1px solid rgba(255,255,255,.07); }
-    .hours-day  { color: rgba(255,255,255,.45); font-weight: 300; }
-    .hours-time { color: var(--white); font-weight: 300; text-align: right; font-size: .82rem; }
+    .hours-day  { color: rgba(255,255,255,.4); }
+    .hours-time { color: #fff; text-align: right; font-size: .82rem; }
 
-    .info-address {
+    .contact__address {
       font-family: var(--serif);
-      font-size: 1.55rem;
+      font-size: 1.6rem;
       font-weight: 300;
       line-height: 1.4;
       margin-bottom: 1.25rem;
     }
-    .info-address a {
-      color: var(--white);
+    .contact__address a {
+      color: #fff;
       border-bottom: 1px solid rgba(255,255,255,.2);
-      transition: border-color .2s;
     }
-    .info-address a:hover { border-color: var(--white); }
+    .contact__address a:hover { border-color: #fff; }
 
-    .info-contact { margin-bottom: 1.5rem; }
-    .info-contact a {
+    .contact__links a {
       display: block;
       font-size: .875rem;
-      font-weight: 300;
-      color: rgba(255,255,255,.55);
+      color: rgba(255,255,255,.5);
       margin-bottom: .35rem;
       transition: color .2s;
     }
-    .info-contact a:hover { color: var(--white); }
+    .contact__links a:hover { color: #fff; }
 
-    .info-social { display: flex; gap: 1.5rem; }
-    .info-social a {
-      font-size: .62rem;
-      letter-spacing: .2em;
+    .contact__social {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .contact__social a {
+      font-size: .63rem;
+      letter-spacing: .18em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.35);
+      color: rgba(255,255,255,.3);
       transition: color .2s;
     }
-    .info-social a:hover { color: var(--gold); }
+    .contact__social a:hover { color: rgba(255,255,255,.8); }
 
-    .info-reserve p {
+    .contact__reserve p {
       font-size: .875rem;
       line-height: 1.75;
-      color: rgba(255,255,255,.45);
+      color: rgba(255,255,255,.4);
       margin-bottom: 2rem;
     }
+    .contact__reserve-link {
+      display: inline-block;
+      font-size: .7rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(255,255,255,.35);
+      padding-bottom: 2px;
+      color: #fff;
+      transition: border-color .2s;
+    }
+    .contact__reserve-link:hover { border-color: #fff; }
 
-    /* ─── FOOTER ─────────────────────────────────────────────── */
+    /* ── footer ──────────────────────────────── */
     .footer {
       background: var(--ink);
       border-top: 1px solid rgba(255,255,255,.06);
-      padding: 1.6rem 3rem;
+      padding: 1.5rem 3rem;
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       flex-wrap: wrap;
       gap: 1rem;
     }
     .footer__logo {
       font-family: var(--serif);
-      font-size: .95rem;
-      letter-spacing: .15em;
+      font-size: .9rem;
+      letter-spacing: .14em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.7);
+      color: rgba(255,255,255,.6);
     }
-    .footer__copy {
-      font-size: .62rem;
-      letter-spacing: .09em;
-      color: rgba(255,255,255,.2);
-    }
+    .footer__copy { font-size: .62rem; color: rgba(255,255,255,.2); }
     .footer__links { display: flex; gap: 2rem; }
     .footer__links a {
       font-size: .62rem;
-      letter-spacing: .12em;
+      letter-spacing: .1em;
       text-transform: uppercase;
       color: rgba(255,255,255,.3);
       transition: color .2s;
     }
-    .footer__links a:hover { color: rgba(255,255,255,.8); }
+    .footer__links a:hover { color: rgba(255,255,255,.7); }
 
-    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    /* ── responsive ──────────────────────────── */
     @media (max-width: 960px) {
-      :root { --nav-h: 60px; }
+      :root { --nav-h: 58px; }
 
       .nav { padding: 0 1.5rem; }
-      .nav__links { display: none; }
+      .nav__list { display: none; }
       .nav__burger { display: flex; }
 
-      .hero__content { padding: 0 1.75rem 3.5rem; }
-      .hero__title { font-size: clamp(2.2rem, 8vw, 3.2rem); }
-
-      .strip { padding: 1.25rem 1.5rem; gap: 1rem 1.5rem; }
-      .strip__sep { display: none; }
-
-      .container { padding: 0 1.5rem; }
-      .section { padding: 4rem 0; }
-
-      /* stack two-col grids */
-      .about__grid,
-      .events__grid {
+      .hero__body {
         grid-template-columns: 1fr;
-        gap: 2.5rem;
+        padding: 0 1.5rem 2rem;
+        gap: 1.5rem;
       }
-      .about__img  { height: 320px; }
-      .events__img { height: 300px; order: -1; }
+      .hero__right { align-items: flex-start; text-align: left; }
+      .hero__title { font-size: clamp(2.4rem, 9vw, 3.5rem); }
 
-      /* food: 1 col on mobile */
-      .food__grid { grid-template-columns: 1fr; gap: 1rem; }
-      .food-card__img { height: 280px; }
-      .food__header { flex-direction: column; align-items: flex-start; }
+      .info-bar {
+        padding: 1.25rem 1.5rem;
+        flex-direction: column;
+        gap: .75rem;
+        align-items: flex-start;
+      }
+      .info-bar__item + .info-bar__item::before { display: none; }
 
-      /* info: 1 col stack */
-      .info__grid { grid-template-columns: 1fr; gap: 2.75rem; }
+      .section { padding: 4rem 1.5rem; }
+
+      .story__grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .story__img { height: 300px; }
+
+      .food__grid { grid-template-columns: 1fr; grid-template-rows: unset; }
+      .food__main { height: 320px; grid-row: unset; }
+      .food__side { height: 220px; }
+      /* on mobile only show main + one side image */
+      .food__side:nth-child(3) { display: none; }
+
+      .events__grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .events__img { height: 280px; order: -1; }
+
+      .contact__grid { grid-template-columns: 1fr; gap: 2.5rem; }
 
       .footer {
         flex-direction: column;
-        align-items: center;
         text-align: center;
         padding: 1.5rem;
         gap: 1.25rem;
       }
       .footer__links { justify-content: center; }
+
+      .quote { padding: 3.5rem 1.5rem; }
     }
 
     @media (min-width: 961px) and (max-width: 1200px) {
-      .food__grid { gap: 1rem; }
-      .food-card__img { height: 360px; }
-      .info__grid { gap: 2.5rem; }
+      .food__main { height: 520px; }
+      .food__side { height: 250px; }
+      .contact__grid { gap: 2.5rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ═══ MOBILE DRAWER ════════════════════════════════════════ -->
-  <nav class="drawer" id="drawer" aria-label="Mobile navigation" aria-hidden="true">
-    <a href="#about"  class="drawer__link">About</a>
-    <a href="#food"   class="drawer__link">Menu</a>
-    <a href="#events" class="drawer__link">Events</a>
-    <a href="#info"   class="drawer__link">Contact</a>
+  <!-- mobile sticky reserve (always visible on mobile) -->
+  <a class="mobile-reserve"
+     href="https://www.sevenrooms.com/reservations/kolkatasocialnewtown"
+     target="_blank" rel="noopener">
+    Reserve a Table →
+  </a>
+
+  <!-- drawer -->
+  <nav class="drawer" id="drawer" aria-hidden="true">
+    <a href="#story"   onclick="closeDrawer()">about</a>
+    <a href="#food"    onclick="closeDrawer()">menu</a>
+    <a href="#events"  onclick="closeDrawer()">events</a>
+    <a href="#contact" onclick="closeDrawer()">contact</a>
     <a href="https://www.sevenrooms.com/reservations/kolkatasocialnewtown"
-       target="_blank" rel="noopener" class="drawer__book btn">Book a Table</a>
+       target="_blank" rel="noopener" onclick="closeDrawer()"
+       style="font-size:1rem;letter-spacing:.14em;text-transform:uppercase;margin-top:.5rem;">
+      reserve →
+    </a>
   </nav>
 
-  <!-- ═══ NAV ══════════════════════════════════════════════════ -->
-  <header class="nav" id="mainNav" aria-label="Main navigation">
+  <!-- nav -->
+  <header class="nav" id="nav">
     <a href="#" class="nav__logo">Kolkata Social</a>
 
-    <ul class="nav__links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#food">Menu</a></li>
-      <li><a href="#events">Events</a></li>
-      <li><a href="#info">Contact</a></li>
+    <ul class="nav__list">
+      <li><a href="#story">about</a></li>
+      <li><a href="#food">menu</a></li>
+      <li><a href="#events">events</a></li>
+      <li><a href="#contact">contact</a></li>
       <li>
         <a href="https://www.sevenrooms.com/reservations/kolkatasocialnewtown"
-           target="_blank" rel="noopener" class="nav__book">Book a Table</a>
+           target="_blank" rel="noopener" class="nav__reserve">reserve</a>
       </li>
     </ul>
 
-    <button class="nav__burger" id="burgerBtn" aria-label="Open navigation menu" aria-expanded="false">
+    <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </header>
 
-  <!-- ═══ HERO ══════════════════════════════════════════════════ -->
-  <section class="hero" aria-label="Introduction">
-    <div class="hero__bg" aria-hidden="true">
-      <img
-        src="assets/images/hero-interior.jpg"
-        alt="Kolkata Social dining room — warmly lit with wooden chairs, colourful artwork and hanging plants"
-        loading="eager"
-        fetchpriority="high"
-      >
+  <!-- ════════ HERO ════════════════════════════ -->
+  <section class="hero">
+    <div class="hero__bg">
+      <img src="assets/images/hero-interior.jpg"
+           alt="Kolkata Social dining room — warmly lit with wooden chairs, colourful artwork and hanging plants"
+           loading="eager" fetchpriority="high">
     </div>
-    <div class="hero__gradient" aria-hidden="true"></div>
 
-    <div class="hero__content">
-      <p class="hero__tag">Bengali Restaurant · 528 King St, Newtown</p>
-      <h1 class="hero__title">
-        A love letter to<br>
-        <em>Bengali cuisine</em><br>
-        through a third culture lens.
-      </h1>
-      <a href="https://www.sevenrooms.com/reservations/kolkatasocialnewtown"
-         target="_blank" rel="noopener" class="hero__cta">Reserve a Table</a>
+    <div class="hero__body">
+      <div class="hero__left">
+        <p class="hero__sub">Bengali Restaurant · Newtown, Sydney</p>
+        <h1 class="hero__title">
+          A love letter<br>to Bengali cuisine.
+        </h1>
+      </div>
+      <div class="hero__right">
+        <p class="hero__hours">
+          Dinner · Tue – Sat · 5:30pm<br>
+          Lunch · Sat · 11:30am<br>
+          528 King St, Newtown
+        </p>
+        <a href="https://www.sevenrooms.com/reservations/kolkatasocialnewtown"
+           target="_blank" rel="noopener" class="hero__book">Reserve a Table →</a>
+      </div>
     </div>
   </section>
 
-  <!-- ═══ INTRO STRIP ═══════════════════════════════════════════ -->
-  <div class="strip" aria-label="At a glance">
-    <div class="strip__item"><span class="strip__dot"></span>Lunch · Sat 11:30am – 2pm</div>
-    <div class="strip__sep" aria-hidden="true"></div>
-    <div class="strip__item"><span class="strip__dot"></span>Dinner · Tue – Sat 5:30 – 10:30pm</div>
-    <div class="strip__sep" aria-hidden="true"></div>
-    <div class="strip__item"><span class="strip__dot"></span>528 King St, Newtown</div>
-    <div class="strip__sep" aria-hidden="true"></div>
-    <div class="strip__item"><span class="strip__dot"></span>0448 773 256</div>
+  <!-- quick info bar — like Cairo's plain text after the image -->
+  <div class="info-bar">
+    <div class="info-bar__item">Bengali restaurant &amp; bar</div>
+    <div class="info-bar__item">Dinner Tue–Sat from 5:30pm &nbsp;·&nbsp; Lunch Sat 11:30am–2pm</div>
+    <div class="info-bar__item">
+      <a href="https://maps.app.goo.gl/Lt3rR661rgcphdy27" target="_blank" rel="noopener">
+        528 King Street, Newtown
+      </a>
+    </div>
+    <div class="info-bar__item">0448 773 256</div>
+  </div>
+  <hr class="rule">
+
+  <!-- ════════ STORY ════════════════════════════ -->
+  <section class="section" id="story">
+    <div class="story__grid">
+
+      <div class="story__text">
+        <p class="story__overline">Our Story</p>
+        <h2 class="story__heading">
+          Heritage on a plate.<br>
+          <em>Through a third culture lens.</em>
+        </h2>
+        <p class="story__body">
+          Kolkata Social honours Bengali heritage while exploring the depth and complexity
+          of its flavours in new ways.
+        </p>
+        <p class="story__body">
+          Led by <strong>Chef Ahana Dutt</strong> — born and raised in Kolkata, shaped by experience
+          in Sydney's most respected kitchens including <strong>Firedoor</strong> and <strong>Raja</strong> —
+          the menu champions local producers and seasonal ingredients, brought to life through
+          traditional techniques and time-honoured family recipes.
+        </p>
+        <p class="story__body">
+          More than a restaurant, it is a space for training future talent —
+          fostering a nearly all-female team and championing the development
+          of women in hospitality.
+        </p>
+        <a href="#food" class="story__link">See the menu →</a>
+      </div>
+
+      <div class="story__img">
+        <img src="assets/images/chef-ahana.jpg"
+             alt="Chef Ahana Dutt in the Kolkata Social kitchen"
+             loading="lazy">
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ════════ FOOD ═════════════════════════════ -->
+  <section class="section" id="food">
+
+    <div class="food__header">
+      <h2 class="food__heading">The <em>food.</em></h2>
+      <a href="#contact" class="food__menu-link">View full menu →</a>
+    </div>
+
+    <!-- editorial grid: 1 large + 2 stacked -->
+    <div class="food__grid">
+      <div class="food__main">
+        <img src="assets/images/dish-beef.jpg"
+             alt="Kosha Mangsho — slow-braised beef with boiled egg, ginger and spring onion"
+             loading="lazy">
+      </div>
+      <div class="food__side">
+        <img src="assets/images/dish-eggplant.jpg"
+             alt="Begun Bhaja — smoky eggplant with herbs"
+             loading="lazy">
+      </div>
+      <div class="food__side">
+        <img src="assets/images/dish-croquettes.jpg"
+             alt="Chop — heirloom croquettes with mustard"
+             loading="lazy">
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ════════ QUOTE ════════════════════════════ -->
+  <div class="quote">
+    <p class="quote__text">
+      "From smoky, mustard oil kissed barramundi to the luxuriously
+      rich egg dalna — every plate is a story of heritage and home."
+    </p>
+    <cite class="quote__cite">— Chef Ahana Dutt</cite>
   </div>
 
-  <!-- ═══ ABOUT ═════════════════════════════════════════════════ -->
-  <section class="section" id="about">
-    <div class="container">
-      <div class="about__grid">
+  <!-- ════════ EVENTS ═══════════════════════════ -->
+  <section class="section" id="events">
+    <div class="events__grid">
 
-        <div class="about__img">
-          <img
-            src="assets/images/chef-ahana.jpg"
-            alt="Chef Ahana Dutt smiling in the Kolkata Social kitchen with plated dishes"
-            loading="lazy"
-          >
-        </div>
-
-        <div class="about__copy">
-          <p class="eyebrow">Our Story</p>
-          <h2 class="h2">Heritage on<br>a <em>plate.</em></h2>
-          <p class="body-text">
-            Kolkata Social honours heritage while exploring the depth and complexity
-            of Bengali flavours in new ways.
-          </p>
-          <p class="body-text">
-            Led by <strong>Chef Ahana Dutt</strong> — born and raised in Kolkata, shaped by experience
-            in Sydney's most respected kitchens including <strong>Firedoor</strong> and <strong>Raja</strong> —
-            the menu champions local producers and seasonal ingredients, brought to life through
-            traditional techniques and time-honoured family recipes.
-          </p>
-          <p class="body-text">
-            More than a restaurant, Kolkata Social is a space for training future talent —
-            fostering a nearly all-female team and championing the development of women in hospitality.
-          </p>
-          <p class="body-text"><em>Come for the food. Stay for the stories.</em></p>
-          <a href="#food" class="link-arrow">See the Menu →</a>
-        </div>
-
+      <div class="events__img">
+        <img src="assets/images/events-interior.jpg"
+             alt="Kolkata Social dining room set for a private event"
+             loading="lazy">
       </div>
+
+      <div class="events__text">
+        <p class="events__overline">Private Dining &amp; Events</p>
+        <h2 class="events__heading">
+          The warmth of Kolkata<br>in the heart of <em>Newtown.</em>
+        </h2>
+        <p class="events__body">
+          Our intimate, light-filled space is designed for gathering —
+          the perfect setting for private events, celebrations and group bookings.
+        </p>
+        <p class="events__body">
+          Guests enjoy beautifully crafted Bengali dishes, paired with curated
+          cocktails and wines, and genuine hospitality from our all-female team.
+        </p>
+        <a href="mailto:hello@kolkatasocial.com.au" class="events__cta">Enquire about events →</a>
+      </div>
+
     </div>
   </section>
 
-  <!-- ═══ FOOD ══════════════════════════════════════════════════ -->
-  <section class="section section--warm" id="food">
-    <div class="container">
-      <div class="food__header">
-        <div>
-          <p class="eyebrow">The Menu</p>
-          <h2 class="h2">Every plate<br>tells a <em>story.</em></h2>
+  <!-- ════════ HOURS & CONTACT ═════════════════ -->
+  <section class="section section--dark" id="contact">
+    <div class="contact__grid">
+
+      <div class="contact__block">
+        <h3>Opening Hours</h3>
+        <div class="hours-row">
+          <span class="hours-day">Monday</span>
+          <span class="hours-time">Closed</span>
         </div>
-        <a href="#info" class="link-arrow">View Full Menu →</a>
+        <div class="hours-row">
+          <span class="hours-day">Tue – Fri</span>
+          <span class="hours-time">Dinner 5:30 – 10:30pm</span>
+        </div>
+        <div class="hours-row">
+          <span class="hours-day">Saturday</span>
+          <span class="hours-time">Lunch 11:30am – 2pm<br>Dinner 5:30 – 10:30pm</span>
+        </div>
+        <div class="hours-row">
+          <span class="hours-day">Sunday</span>
+          <span class="hours-time">Closed</span>
+        </div>
       </div>
 
-      <div class="food__grid">
-        <div class="food-card">
-          <div class="food-card__img">
-            <img
-              src="assets/images/dish-eggplant.jpg"
-              alt="Smoky Bengali eggplant garnished with fresh herbs and microgreens"
-              loading="lazy"
-            >
-          </div>
-          <p class="food-card__label">Begun Bhaja — smoky eggplant</p>
+      <div class="contact__block">
+        <h3>Find Us</h3>
+        <p class="contact__address">
+          <a href="https://maps.app.goo.gl/Lt3rR661rgcphdy27" target="_blank" rel="noopener">
+            528 King Street,<br>Newtown NSW 2042
+          </a>
+        </p>
+        <div class="contact__links">
+          <a href="tel:0448773256">0448 773 256</a>
+          <a href="mailto:hello@kolkatasocial.com.au">hello@kolkatasocial.com.au</a>
         </div>
-
-        <div class="food-card">
-          <div class="food-card__img">
-            <img
-              src="assets/images/dish-beef.jpg"
-              alt="Slow-braised beef with boiled egg, ginger and spring onion"
-              loading="lazy"
-            >
-          </div>
-          <p class="food-card__label">Kosha Mangsho — slow-braised beef</p>
-        </div>
-
-        <div class="food-card">
-          <div class="food-card__img">
-            <img
-              src="assets/images/dish-croquettes.jpg"
-              alt="Two crispy golden croquettes with mustard sauce and fresh herbs"
-              loading="lazy"
-            >
-          </div>
-          <p class="food-card__label">Chop — heirloom croquettes</p>
+        <div class="contact__social">
+          <a href="https://www.instagram.com/kolkatasocial_/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.facebook.com/kolkatasocial/" target="_blank" rel="noopener">Facebook</a>
         </div>
       </div>
+
+      <div class="contact__block contact__reserve">
+        <h3>Reservations</h3>
+        <p>
+          Book online for guaranteed seating.<br>
+          Same-day walk-ins always welcome,<br>subject to availability.
+        </p>
+        <a href="https://www.sevenrooms.com/reservations/kolkatasocialnewtown"
+           target="_blank" rel="noopener" class="contact__reserve-link">
+          Reserve a Table →
+        </a>
+      </div>
+
     </div>
   </section>
 
-  <!-- ═══ PULL QUOTE ════════════════════════════════════════════ -->
-  <section class="quote section" aria-label="Chef quote">
-    <div class="container">
-      <blockquote>
-        "From smoky, mustard oil kissed barramundi to the
-        luxuriously rich egg dalna — every plate is a story
-        of heritage and home."
-      </blockquote>
-      <cite>— Chef Ahana Dutt</cite>
-    </div>
-  </section>
-
-  <!-- ═══ EVENTS ════════════════════════════════════════════════ -->
-  <section class="section section--warm" id="events">
-    <div class="container">
-      <div class="events__grid">
-
-        <div class="events__copy">
-          <p class="eyebrow">Private Dining &amp; Events</p>
-          <h2 class="h2">The warmth of<br><em>Kolkata</em> in the<br>heart of Newtown.</h2>
-          <p class="body-text">
-            Our intimate, light-filled and vibrant space is designed for gathering —
-            the perfect setting for private events, celebrations and group bookings.
-          </p>
-          <p class="body-text">
-            Guests enjoy beautifully crafted Bengali dishes paired with curated
-            cocktails and wines, delivered with genuine hospitality from our all-female team.
-          </p>
-          <a href="mailto:hello@kolkatasocial.com.au" class="btn btn--dark">Enquire About Events</a>
-        </div>
-
-        <div class="events__img">
-          <img
-            src="assets/images/events-interior.jpg"
-            alt="Kolkata Social dining room ready for a private event"
-            loading="lazy"
-          >
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ HOURS & CONTACT ═══════════════════════════════════════ -->
-  <section class="section section--dark" id="info">
-    <div class="container">
-      <div class="info__grid">
-
-        <!-- Hours -->
-        <div class="info-block">
-          <h3>Opening Hours</h3>
-          <div class="hours-row">
-            <span class="hours-day">Monday</span>
-            <span class="hours-time">Closed</span>
-          </div>
-          <div class="hours-row">
-            <span class="hours-day">Tuesday – Friday</span>
-            <span class="hours-time">Dinner 5:30 – 10:30pm</span>
-          </div>
-          <div class="hours-row">
-            <span class="hours-day">Saturday</span>
-            <span class="hours-time">Lunch 11:30am – 2pm<br>Dinner 5:30 – 10:30pm</span>
-          </div>
-          <div class="hours-row">
-            <span class="hours-day">Sunday</span>
-            <span class="hours-time">Closed</span>
-          </div>
-        </div>
-
-        <!-- Location -->
-        <div class="info-block">
-          <h3>Find Us</h3>
-          <p class="info-address">
-            <a href="https://maps.app.goo.gl/Lt3rR661rgcphdy27" target="_blank" rel="noopener">
-              528 King Street,<br>Newtown NSW 2042
-            </a>
-          </p>
-          <div class="info-contact">
-            <a href="tel:0448773256">0448 773 256</a>
-            <a href="mailto:hello@kolkatasocial.com.au">hello@kolkatasocial.com.au</a>
-          </div>
-          <div class="info-social">
-            <a href="https://www.instagram.com/kolkatasocial_/" target="_blank" rel="noopener">Instagram</a>
-            <a href="https://www.facebook.com/kolkatasocial/"  target="_blank" rel="noopener">Facebook</a>
-          </div>
-        </div>
-
-        <!-- Reserve -->
-        <div class="info-block info-reserve">
-          <h3>Reservations</h3>
-          <p>
-            Book online for guaranteed seating. Same-day walk-ins are
-            always welcome, subject to availability.
-          </p>
-          <a href="https://www.sevenrooms.com/reservations/kolkatasocialnewtown"
-             target="_blank" rel="noopener" class="btn btn--outline-white">Reserve a Table</a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ FOOTER ════════════════════════════════════════════════ -->
+  <!-- ════════ FOOTER ═══════════════════════════ -->
   <footer class="footer">
     <span class="footer__logo">Kolkata Social</span>
     <span class="footer__copy">© 2025 Kolkata Social. All rights reserved.</span>
-    <nav class="footer__links" aria-label="Footer links">
-      <a href="#about">About</a>
-      <a href="#food">Menu</a>
-      <a href="#events">Events</a>
-      <a href="#info">Contact</a>
+    <nav class="footer__links">
+      <a href="#story">about</a>
+      <a href="#food">menu</a>
+      <a href="#events">events</a>
+      <a href="#contact">contact</a>
     </nav>
   </footer>
 
-  <!-- ═══ SCHEMA ════════════════════════════════════════════════ -->
+  <!-- schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -862,7 +890,6 @@
     "name": "Kolkata Social",
     "url": "https://www.kolkatasocial.com.au",
     "telephone": "+61-448-773-256",
-    "email": "hello@kolkatasocial.com.au",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "528 King Street",
@@ -871,7 +898,6 @@
       "postalCode": "2042",
       "addressCountry": "AU"
     },
-    "geo": { "@type": "GeoCoordinates", "latitude": -33.8983, "longitude": 151.1792 },
     "openingHoursSpecification": [
       { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday"], "opens": "17:30", "closes": "22:30" },
       { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday"], "opens": "11:30", "closes": "14:00" },
@@ -879,69 +905,42 @@
     ],
     "servesCuisine": ["Bengali","Indian"],
     "priceRange": "$$",
-    "acceptsReservations": "True",
-    "sameAs": [
-      "https://www.instagram.com/kolkatasocial_/",
-      "https://www.facebook.com/kolkatasocial/"
-    ]
+    "acceptsReservations": "True"
   }
   </script>
 
-  <!-- ═══ JS ════════════════════════════════════════════════════ -->
   <script>
-    // ── Nav: transparent → solid on scroll ──────────────────────
-    const nav = document.getElementById('mainNav');
+    // nav solid on scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('solid', window.scrollY > 80);
+    }, { passive: true });
 
-    function updateNav() {
-      nav.classList.toggle('is-scrolled', window.scrollY > 60);
-    }
-    window.addEventListener('scroll', updateNav, { passive: true });
-    updateNav();
-
-    // ── Hamburger / Drawer ───────────────────────────────────────
-    const burger = document.getElementById('burgerBtn');
+    // hamburger / drawer
+    const burger = document.getElementById('burger');
     const drawer = document.getElementById('drawer');
-    const drawerLinks = drawer.querySelectorAll('a');
 
     function openDrawer() {
-      drawer.classList.add('is-open');
+      drawer.classList.add('open');
       drawer.setAttribute('aria-hidden', 'false');
-      burger.classList.add('is-open');
+      burger.classList.add('open');
       burger.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
     }
 
     function closeDrawer() {
-      drawer.classList.remove('is-open');
+      drawer.classList.remove('open');
       drawer.setAttribute('aria-hidden', 'true');
-      burger.classList.remove('is-open');
+      burger.classList.remove('open');
       burger.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
     }
 
-    function toggleDrawer() {
-      drawer.classList.contains('is-open') ? closeDrawer() : openDrawer();
-    }
-
-    burger.addEventListener('click', toggleDrawer);
-
-    // close when any drawer link is tapped
-    drawerLinks.forEach(link => link.addEventListener('click', closeDrawer));
-
-    // close on Escape
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeDrawer();
+    burger.addEventListener('click', () => {
+      drawer.classList.contains('open') ? closeDrawer() : openDrawer();
     });
 
-    // close if user taps outside drawer (on the darkened area)
-    document.addEventListener('click', e => {
-      if (drawer.classList.contains('is-open') &&
-          !drawer.contains(e.target) &&
-          e.target !== burger &&
-          !burger.contains(e.target)) {
-        closeDrawer();
-      }
-    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
   </script>
 
 </body>
