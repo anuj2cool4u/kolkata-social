@@ -4,16 +4,16 @@
   <defs>
     <filter id="emboss" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
       <!-- Step 1: Blur the alpha channel to get soft edges for lighting -->
-      <feGaussianBlur in="SourceAlpha" stdDeviation="1.2" result="blur"/>
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.0" result="blur"/>
 
-      <!-- Step 2: Shadow — offset down-right, dark warm tone -->
-      <feOffset dx="1.2" dy="1.2" in="blur" result="shadowBlur"/>
-      <feFlood flood-color="#8C7A68" flood-opacity="0.55" result="shadowColor"/>
+      <!-- Step 2: Shadow — offset down-right, very subtle warm tone -->
+      <feOffset dx="1.0" dy="1.0" in="blur" result="shadowBlur"/>
+      <feFlood flood-color="#9A8878" flood-opacity="0.28" result="shadowColor"/>
       <feComposite in="shadowColor" in2="shadowBlur" operator="in" result="shadow"/>
 
-      <!-- Step 3: Highlight — offset up-left, near-white -->
-      <feOffset dx="-1.2" dy="-1.2" in="blur" result="highlightBlur"/>
-      <feFlood flood-color="#FFFFFF" flood-opacity="0.75" result="highlightColor"/>
+      <!-- Step 3: Highlight — offset up-left, soft white -->
+      <feOffset dx="-1.0" dy="-1.0" in="blur" result="highlightBlur"/>
+      <feFlood flood-color="#FFFFFF" flood-opacity="0.45" result="highlightColor"/>
       <feComposite in="highlightColor" in2="highlightBlur" operator="in" result="highlight"/>
 
       <!-- Step 4: Merge layers: shadow → original strokes → highlight on top -->
@@ -24,7 +24,7 @@
       </feMerge>
     </filter>
   </defs>
-  <g transform="translate(80,80)" fill="none" stroke="#C8BFB2" stroke-width="1.1" filter="url(#emboss)">
+  <g transform="translate(80,80)" fill="none" stroke="#E2DDD5" stroke-width="1.1" filter="url(#emboss)">
 
     <!-- ── Outer dotted ring ── -->
     <circle cx="0" cy="0" r="70" stroke-dasharray="1.4 5.2" stroke-width="1.0"/>
@@ -53,16 +53,16 @@
     <ellipse rx="6" ry="20" transform="rotate(337.5)" cx="0" cy="-26"/>
 
     <!-- ── Dot accents at outer petal tips ── -->
-    <circle r="1.2" cx="0"     cy="-67" fill="#C8BFB2" stroke="none"/>
-    <circle r="1.2" cx="47.4"  cy="-47.4" fill="#C8BFB2" stroke="none" transform="rotate(45)  translate(0,-67) rotate(-45)"/>
-    <circle r="1.2" transform="rotate(0)   translate(0,-67)" fill="#C8BFB2" stroke="none"/>
-    <circle r="1.2" transform="rotate(45)  translate(0,-67)" fill="#C8BFB2" stroke="none"/>
-    <circle r="1.2" transform="rotate(90)  translate(0,-67)" fill="#C8BFB2" stroke="none"/>
-    <circle r="1.2" transform="rotate(135) translate(0,-67)" fill="#C8BFB2" stroke="none"/>
-    <circle r="1.2" transform="rotate(180) translate(0,-67)" fill="#C8BFB2" stroke="none"/>
-    <circle r="1.2" transform="rotate(225) translate(0,-67)" fill="#C8BFB2" stroke="none"/>
-    <circle r="1.2" transform="rotate(270) translate(0,-67)" fill="#C8BFB2" stroke="none"/>
-    <circle r="1.2" transform="rotate(315) translate(0,-67)" fill="#C8BFB2" stroke="none"/>
+    <circle r="1.2" cx="0"     cy="-67" fill="#E2DDD5" stroke="none"/>
+    <circle r="1.2" cx="47.4"  cy="-47.4" fill="#E2DDD5" stroke="none" transform="rotate(45)  translate(0,-67) rotate(-45)"/>
+    <circle r="1.2" transform="rotate(0)   translate(0,-67)" fill="#E2DDD5" stroke="none"/>
+    <circle r="1.2" transform="rotate(45)  translate(0,-67)" fill="#E2DDD5" stroke="none"/>
+    <circle r="1.2" transform="rotate(90)  translate(0,-67)" fill="#E2DDD5" stroke="none"/>
+    <circle r="1.2" transform="rotate(135) translate(0,-67)" fill="#E2DDD5" stroke="none"/>
+    <circle r="1.2" transform="rotate(180) translate(0,-67)" fill="#E2DDD5" stroke="none"/>
+    <circle r="1.2" transform="rotate(225) translate(0,-67)" fill="#E2DDD5" stroke="none"/>
+    <circle r="1.2" transform="rotate(270) translate(0,-67)" fill="#E2DDD5" stroke="none"/>
+    <circle r="1.2" transform="rotate(315) translate(0,-67)" fill="#E2DDD5" stroke="none"/>
 
     <!-- ── Inner mid ring ── -->
     <circle cx="0" cy="0" r="18" stroke-width="1.0"/>
@@ -71,7 +71,7 @@
     <circle cx="0" cy="0" r="8" stroke-width="1.2"/>
 
     <!-- ── Centre dot ── -->
-    <circle cx="0" cy="0" r="2.2" fill="#C8BFB2" stroke="none"/>
+    <circle cx="0" cy="0" r="2.2" fill="#E2DDD5" stroke="none"/>
 
     <!-- ── 8 stamen lines from centre ── -->
     <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.9"/>
@@ -84,14 +84,14 @@
     <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.9" transform="rotate(315)"/>
 
     <!-- ── Small dot at each stamen tip ── -->
-    <circle r="1" transform="rotate(0)   translate(0,-17)" fill="#C8BFB2" stroke="none"/>
-    <circle r="1" transform="rotate(45)  translate(0,-17)" fill="#C8BFB2" stroke="none"/>
-    <circle r="1" transform="rotate(90)  translate(0,-17)" fill="#C8BFB2" stroke="none"/>
-    <circle r="1" transform="rotate(135) translate(0,-17)" fill="#C8BFB2" stroke="none"/>
-    <circle r="1" transform="rotate(180) translate(0,-17)" fill="#C8BFB2" stroke="none"/>
-    <circle r="1" transform="rotate(225) translate(0,-17)" fill="#C8BFB2" stroke="none"/>
-    <circle r="1" transform="rotate(270) translate(0,-17)" fill="#C8BFB2" stroke="none"/>
-    <circle r="1" transform="rotate(315) translate(0,-17)" fill="#C8BFB2" stroke="none"/>
+    <circle r="1" transform="rotate(0)   translate(0,-17)" fill="#E2DDD5" stroke="none"/>
+    <circle r="1" transform="rotate(45)  translate(0,-17)" fill="#E2DDD5" stroke="none"/>
+    <circle r="1" transform="rotate(90)  translate(0,-17)" fill="#E2DDD5" stroke="none"/>
+    <circle r="1" transform="rotate(135) translate(0,-17)" fill="#E2DDD5" stroke="none"/>
+    <circle r="1" transform="rotate(180) translate(0,-17)" fill="#E2DDD5" stroke="none"/>
+    <circle r="1" transform="rotate(225) translate(0,-17)" fill="#E2DDD5" stroke="none"/>
+    <circle r="1" transform="rotate(270) translate(0,-17)" fill="#E2DDD5" stroke="none"/>
+    <circle r="1" transform="rotate(315) translate(0,-17)" fill="#E2DDD5" stroke="none"/>
 
   </g>
 </svg>
