@@ -1,13 +1,36 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160">
   <!-- Alpona Padma (lotus) tile — Bengali festival floor motif -->
-  <!-- All strokes in #C8BFB2 on cream #F4F1EB → ~6% opacity emboss effect -->
-  <g transform="translate(80,80)" fill="none" stroke="#C8BFB2" stroke-width="0.7">
+  <!-- Embossed: highlight top-left, shadow bottom-right, light from NW at 45° -->
+  <defs>
+    <filter id="emboss" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
+      <!-- Step 1: Blur the alpha channel to get soft edges for lighting -->
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.2" result="blur"/>
+
+      <!-- Step 2: Shadow — offset down-right, dark warm tone -->
+      <feOffset dx="1.2" dy="1.2" in="blur" result="shadowBlur"/>
+      <feFlood flood-color="#8C7A68" flood-opacity="0.55" result="shadowColor"/>
+      <feComposite in="shadowColor" in2="shadowBlur" operator="in" result="shadow"/>
+
+      <!-- Step 3: Highlight — offset up-left, near-white -->
+      <feOffset dx="-1.2" dy="-1.2" in="blur" result="highlightBlur"/>
+      <feFlood flood-color="#FFFFFF" flood-opacity="0.75" result="highlightColor"/>
+      <feComposite in="highlightColor" in2="highlightBlur" operator="in" result="highlight"/>
+
+      <!-- Step 4: Merge layers: shadow → original strokes → highlight on top -->
+      <feMerge>
+        <feMergeNode in="shadow"/>
+        <feMergeNode in="SourceGraphic"/>
+        <feMergeNode in="highlight"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <g transform="translate(80,80)" fill="none" stroke="#C8BFB2" stroke-width="1.1" filter="url(#emboss)">
 
     <!-- ── Outer dotted ring ── -->
-    <circle cx="0" cy="0" r="70" stroke-dasharray="1.4 5.2" stroke-width="0.7"/>
+    <circle cx="0" cy="0" r="70" stroke-dasharray="1.4 5.2" stroke-width="1.0"/>
 
     <!-- ── Outer ring guideline ── -->
-    <circle cx="0" cy="0" r="60" stroke-width="0.4" stroke-dasharray="2 6"/>
+    <circle cx="0" cy="0" r="60" stroke-width="0.7" stroke-dasharray="2 6"/>
 
     <!-- ── 8 outer petals (elongated ellipses, rotated every 45°) ── -->
     <ellipse rx="9" ry="30" transform="rotate(0)"   cx="0" cy="-38"/>
@@ -42,23 +65,23 @@
     <circle r="1.2" transform="rotate(315) translate(0,-67)" fill="#C8BFB2" stroke="none"/>
 
     <!-- ── Inner mid ring ── -->
-    <circle cx="0" cy="0" r="18" stroke-width="0.6"/>
+    <circle cx="0" cy="0" r="18" stroke-width="1.0"/>
 
     <!-- ── Centre circle ── -->
-    <circle cx="0" cy="0" r="8" stroke-width="0.8"/>
+    <circle cx="0" cy="0" r="8" stroke-width="1.2"/>
 
     <!-- ── Centre dot ── -->
     <circle cx="0" cy="0" r="2.2" fill="#C8BFB2" stroke="none"/>
 
     <!-- ── 8 stamen lines from centre ── -->
-    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.5"/>
-    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.5" transform="rotate(45)"/>
-    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.5" transform="rotate(90)"/>
-    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.5" transform="rotate(135)"/>
-    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.5" transform="rotate(180)"/>
-    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.5" transform="rotate(225)"/>
-    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.5" transform="rotate(270)"/>
-    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.5" transform="rotate(315)"/>
+    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.9"/>
+    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.9" transform="rotate(45)"/>
+    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.9" transform="rotate(90)"/>
+    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.9" transform="rotate(135)"/>
+    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.9" transform="rotate(180)"/>
+    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.9" transform="rotate(225)"/>
+    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.9" transform="rotate(270)"/>
+    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.9" transform="rotate(315)"/>
 
     <!-- ── Small dot at each stamen tip ── -->
     <circle r="1" transform="rotate(0)   translate(0,-17)" fill="#C8BFB2" stroke="none"/>
