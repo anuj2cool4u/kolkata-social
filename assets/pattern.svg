@@ -1,21 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160">
-  <!-- Alpona Padma (lotus) tile — Bengali festival floor motif -->
-  <!-- Embossed: highlight top-left, shadow bottom-right, light from NW at 45° -->
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500">
+  <!--
+    Abstract composition inspired by Bengali script letterforms.
+    Visual DNA: the matra (horizontal top bar), a vertical stem with oval flag,
+    a large enclosed oval form — the building blocks of Bangla consonants.
+    Rendered stroke-only so the emboss filter creates the illusion of depth.
+  -->
   <defs>
-    <filter id="emboss" x="-12%" y="-12%" width="124%" height="124%" color-interpolation-filters="sRGB">
-      <!-- Blur alpha — larger radius = softer, deeper-looking bevel -->
-      <feGaussianBlur in="SourceAlpha" stdDeviation="2.5" result="blur"/>
-
-      <!-- Shadow — bottom-right, warm dark, strong -->
-      <feOffset dx="2.5" dy="2.5" in="blur" result="shadowBlur"/>
-      <feFlood flood-color="#7A6855" flood-opacity="0.55" result="shadowColor"/>
+    <filter id="emboss" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+      <!-- Blur the outline alpha to create soft bevel slopes -->
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3.5" result="blur"/>
+      <!-- Shadow: bottom-right, warm dark -->
+      <feOffset dx="3.5" dy="3.5" in="blur" result="shadowBlur"/>
+      <feFlood flood-color="#7A6855" flood-opacity="0.62" result="shadowColor"/>
       <feComposite in="shadowColor" in2="shadowBlur" operator="in" result="shadow"/>
-
-      <!-- Highlight — top-left, bright white, strong -->
-      <feOffset dx="-2.5" dy="-2.5" in="blur" result="highlightBlur"/>
-      <feFlood flood-color="#FFFFFF" flood-opacity="0.80" result="highlightColor"/>
+      <!-- Highlight: top-left, near-white -->
+      <feOffset dx="-3.5" dy="-3.5" in="blur" result="highlightBlur"/>
+      <feFlood flood-color="#FFFFFF" flood-opacity="0.88" result="highlightColor"/>
       <feComposite in="highlightColor" in2="highlightBlur" operator="in" result="highlight"/>
-
       <!-- Merge: shadow → strokes → highlight -->
       <feMerge>
         <feMergeNode in="shadow"/>
@@ -24,74 +25,80 @@
       </feMerge>
     </filter>
   </defs>
-  <g transform="translate(80,80)" fill="none" stroke="#D8D0C6" stroke-width="1.1" filter="url(#emboss)">
 
-    <!-- ── Outer dotted ring ── -->
-    <circle cx="0" cy="0" r="70" stroke-dasharray="1.4 5.2" stroke-width="1.0"/>
+  <g fill="none" stroke="#CCC4B8" stroke-linecap="round" stroke-linejoin="round" filter="url(#emboss)">
 
-    <!-- ── Outer ring guideline ── -->
-    <circle cx="0" cy="0" r="60" stroke-width="0.7" stroke-dasharray="2 6"/>
+    <!-- ── Grounding circle — very faint outer ring to anchor the composition ── -->
+    <circle cx="250" cy="268" r="212" stroke-width="0.9" stroke-dasharray="4 11"/>
 
-    <!-- ── 8 outer petals (elongated ellipses, rotated every 45°) ── -->
-    <ellipse rx="9" ry="30" transform="rotate(0)"   cx="0" cy="-38"/>
-    <ellipse rx="9" ry="30" transform="rotate(45)"  cx="0" cy="-38"/>
-    <ellipse rx="9" ry="30" transform="rotate(90)"  cx="0" cy="-38"/>
-    <ellipse rx="9" ry="30" transform="rotate(135)" cx="0" cy="-38"/>
-    <ellipse rx="9" ry="30" transform="rotate(180)" cx="0" cy="-38"/>
-    <ellipse rx="9" ry="30" transform="rotate(225)" cx="0" cy="-38"/>
-    <ellipse rx="9" ry="30" transform="rotate(270)" cx="0" cy="-38"/>
-    <ellipse rx="9" ry="30" transform="rotate(315)" cx="0" cy="-38"/>
+    <!-- ══════════════════════════════════════════════
+         MATRA — the defining horizontal top bar of
+         Bengali script that connects letterforms
+    ══════════════════════════════════════════════ -->
+    <line x1="70" y1="158" x2="430" y2="158" stroke-width="6"/>
 
-    <!-- ── 8 inner petals (shorter, between outer) ── -->
-    <ellipse rx="6" ry="20" transform="rotate(22.5)"  cx="0" cy="-26"/>
-    <ellipse rx="6" ry="20" transform="rotate(67.5)"  cx="0" cy="-26"/>
-    <ellipse rx="6" ry="20" transform="rotate(112.5)" cx="0" cy="-26"/>
-    <ellipse rx="6" ry="20" transform="rotate(157.5)" cx="0" cy="-26"/>
-    <ellipse rx="6" ry="20" transform="rotate(202.5)" cx="0" cy="-26"/>
-    <ellipse rx="6" ry="20" transform="rotate(247.5)" cx="0" cy="-26"/>
-    <ellipse rx="6" ry="20" transform="rotate(292.5)" cx="0" cy="-26"/>
-    <ellipse rx="6" ry="20" transform="rotate(337.5)" cx="0" cy="-26"/>
+    <!-- Pre-matra upward hook (the curl at the word's start) -->
+    <path d="M70,158 C54,144 51,120 62,104 C71,91 87,92 95,105"
+          stroke-width="4" fill="none"/>
 
-    <!-- ── Dot accents at outer petal tips ── -->
-    <circle r="1.2" cx="0"     cy="-67" fill="#D8D0C6" stroke="none"/>
-    <circle r="1.2" cx="47.4"  cy="-47.4" fill="#D8D0C6" stroke="none" transform="rotate(45)  translate(0,-67) rotate(-45)"/>
-    <circle r="1.2" transform="rotate(0)   translate(0,-67)" fill="#D8D0C6" stroke="none"/>
-    <circle r="1.2" transform="rotate(45)  translate(0,-67)" fill="#D8D0C6" stroke="none"/>
-    <circle r="1.2" transform="rotate(90)  translate(0,-67)" fill="#D8D0C6" stroke="none"/>
-    <circle r="1.2" transform="rotate(135) translate(0,-67)" fill="#D8D0C6" stroke="none"/>
-    <circle r="1.2" transform="rotate(180) translate(0,-67)" fill="#D8D0C6" stroke="none"/>
-    <circle r="1.2" transform="rotate(225) translate(0,-67)" fill="#D8D0C6" stroke="none"/>
-    <circle r="1.2" transform="rotate(270) translate(0,-67)" fill="#D8D0C6" stroke="none"/>
-    <circle r="1.2" transform="rotate(315) translate(0,-67)" fill="#D8D0C6" stroke="none"/>
+    <!-- Right matra terminal — slight downward curl -->
+    <path d="M430,158 C444,145 448,128 437,113"
+          stroke-width="4" fill="none"/>
 
-    <!-- ── Inner mid ring ── -->
-    <circle cx="0" cy="0" r="18" stroke-width="1.0"/>
+    <!-- ══════════════════════════════════════════════
+         LEFT LETTERFORM
+         Vertical stem descending from matra,
+         with a small oval "flag" branching right —
+         characteristic of Bengali আ / ব / ড forms
+    ══════════════════════════════════════════════ -->
 
-    <!-- ── Centre circle ── -->
-    <circle cx="0" cy="0" r="8" stroke-width="1.2"/>
+    <!-- Main vertical stem -->
+    <path d="M108,158 C108,250 106,320 105,368 C104,392 110,410 122,418 C130,424 142,422 148,414"
+          stroke-width="5" fill="none"/>
 
-    <!-- ── Centre dot ── -->
-    <circle cx="0" cy="0" r="2.2" fill="#D8D0C6" stroke="none"/>
+    <!-- Small oval flag (the enclosed loop branching from the stem) -->
+    <path d="M107,235 C121,222 156,226 161,249 C166,272 150,287 107,283"
+          stroke-width="3.5" fill="none"/>
 
-    <!-- ── 8 stamen lines from centre ── -->
-    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.9"/>
-    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.9" transform="rotate(45)"/>
-    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.9" transform="rotate(90)"/>
-    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.9" transform="rotate(135)"/>
-    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.9" transform="rotate(180)"/>
-    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.9" transform="rotate(225)"/>
-    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.9" transform="rotate(270)"/>
-    <line x1="0" y1="-8"  x2="0"  y2="-17" stroke-width="0.9" transform="rotate(315)"/>
+    <!-- ══════════════════════════════════════════════
+         RIGHT LETTERFORM
+         Large enclosed oval — the dominant visual
+         element in Bengali consonants like ক হ ত
+    ══════════════════════════════════════════════ -->
 
-    <!-- ── Small dot at each stamen tip ── -->
-    <circle r="1" transform="rotate(0)   translate(0,-17)" fill="#D8D0C6" stroke="none"/>
-    <circle r="1" transform="rotate(45)  translate(0,-17)" fill="#D8D0C6" stroke="none"/>
-    <circle r="1" transform="rotate(90)  translate(0,-17)" fill="#D8D0C6" stroke="none"/>
-    <circle r="1" transform="rotate(135) translate(0,-17)" fill="#D8D0C6" stroke="none"/>
-    <circle r="1" transform="rotate(180) translate(0,-17)" fill="#D8D0C6" stroke="none"/>
-    <circle r="1" transform="rotate(225) translate(0,-17)" fill="#D8D0C6" stroke="none"/>
-    <circle r="1" transform="rotate(270) translate(0,-17)" fill="#D8D0C6" stroke="none"/>
-    <circle r="1" transform="rotate(315) translate(0,-17)" fill="#D8D0C6" stroke="none"/>
+    <!-- Outer boundary of the large form -->
+    <path d="M268,158
+             C268,158 204,176 184,230
+             C164,284 182,348 226,378
+             C258,400 304,402 342,385
+             C382,366 408,322 404,274
+             C400,226 374,183 336,164
+             C314,155 289,153 268,158Z"
+          stroke-width="5" fill="none"/>
+
+    <!-- Inner oval — the enclosed "eye" that gives Bengali letters
+         their characteristic filled-loop appearance -->
+    <ellipse cx="300" cy="284" rx="76" ry="90" stroke-width="3.2"/>
+
+    <!-- Descending tail from the right of the outer form -->
+    <path d="M404,274 C417,308 412,354 397,378 C386,396 368,406 352,402"
+          stroke-width="3.5" fill="none"/>
+
+    <!-- ══════════════════════════════════════════════
+         CONNECTING STROKE
+         The mid-level bridge that reads as script
+    ══════════════════════════════════════════════ -->
+    <path d="M107,281 C148,272 198,268 240,271"
+          stroke-width="2.5"/>
+
+    <!-- ══════════════════════════════════════════════
+         TERMINAL DOTS — punctuation-like marks
+         that finish each stroke end
+    ══════════════════════════════════════════════ -->
+    <circle cx="70"  cy="158" r="3.5" fill="#CCC4B8" stroke="none"/>
+    <circle cx="250" cy="158" r="4.5" fill="#CCC4B8" stroke="none"/>
+    <circle cx="430" cy="158" r="3.5" fill="#CCC4B8" stroke="none"/>
+    <circle cx="300" cy="284" r="5.5" fill="#CCC4B8" stroke="none"/>
 
   </g>
 </svg>
