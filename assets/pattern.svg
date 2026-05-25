@@ -1,104 +1,191 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500">
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="380" viewBox="0 0 560 380">
   <!--
-    Abstract composition inspired by Bengali script letterforms.
-    Visual DNA: the matra (horizontal top bar), a vertical stem with oval flag,
-    a large enclosed oval form — the building blocks of Bangla consonants.
-    Rendered stroke-only so the emboss filter creates the illusion of depth.
+    Ilish / Hilsa (Tenualosa ilisha) — Bengal's sacred fish.
+    Drawn as natural-history line art: body outline, forked caudal fin,
+    gill plate, dorsal fin with rays, pectoral/pelvic/anal fins,
+    overlapping scale rows (clipped), lateral line, shoulder spots, eye.
+    Stroke-only so the emboss filter reads as pressed into the cream surface.
   -->
   <defs>
-    <filter id="emboss" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
-      <!-- Blur the outline alpha to create soft bevel slopes -->
+
+    <filter id="emboss" x="-14%" y="-14%" width="128%" height="128%" color-interpolation-filters="sRGB">
       <feGaussianBlur in="SourceAlpha" stdDeviation="3.5" result="blur"/>
-      <!-- Shadow: bottom-right, warm dark -->
       <feOffset dx="3.5" dy="3.5" in="blur" result="shadowBlur"/>
       <feFlood flood-color="#7A6855" flood-opacity="0.62" result="shadowColor"/>
       <feComposite in="shadowColor" in2="shadowBlur" operator="in" result="shadow"/>
-      <!-- Highlight: top-left, near-white -->
       <feOffset dx="-3.5" dy="-3.5" in="blur" result="highlightBlur"/>
       <feFlood flood-color="#FFFFFF" flood-opacity="0.88" result="highlightColor"/>
       <feComposite in="highlightColor" in2="highlightBlur" operator="in" result="highlight"/>
-      <!-- Merge: shadow → strokes → highlight -->
       <feMerge>
         <feMergeNode in="shadow"/>
         <feMergeNode in="SourceGraphic"/>
         <feMergeNode in="highlight"/>
       </feMerge>
     </filter>
+
+    <!-- Scale clip: main body only, excluding head and tail fin -->
+    <clipPath id="body-clip">
+      <path d="M 122,142
+               C 148,130 182,108 222,100
+               C 260,93 300,93 332,99
+               C 367,107 402,120 434,138
+               L 462,168 L 462,208
+               C 448,228 404,258 332,282
+               C 300,287 260,287 222,283
+               C 182,276 148,262 122,250 Z"/>
+    </clipPath>
+
   </defs>
 
   <g fill="none" stroke="#CCC4B8" stroke-linecap="round" stroke-linejoin="round" filter="url(#emboss)">
 
-    <!-- ── Grounding circle — very faint outer ring to anchor the composition ── -->
-    <circle cx="250" cy="268" r="212" stroke-width="0.9" stroke-dasharray="4 11"/>
+    <!-- ══ BODY — full silhouette including forked caudal fin ══
+         Snout at left (x≈62), tail at right (x≈522).
+         Path: snout → dorsal edge → upper peduncle → upper tail lobe →
+               peduncle notch → lower tail lobe → lower peduncle →
+               ventral edge → snout. -->
+    <path stroke-width="4"
+          d="M 64,193
+             C 74,168 90,150 114,142
+             C 148,130 182,108 222,100
+             C 260,93 300,93 332,99
+             C 367,107 402,120 434,138
+             C 448,147 458,158 462,168
+             L 522,96
+             L 462,188
+             L 522,292
+             L 462,208
+             C 458,218 448,230 434,240
+             C 402,258 368,274 332,282
+             C 300,287 260,287 222,283
+             C 182,276 148,262 116,250
+             C 92,240 76,225 68,210
+             C 65,204 64,198 64,193 Z"/>
 
-    <!-- ══════════════════════════════════════════════
-         MATRA — the defining horizontal top bar of
-         Bengali script that connects letterforms
-    ══════════════════════════════════════════════ -->
-    <line x1="70" y1="158" x2="430" y2="158" stroke-width="6"/>
+    <!-- ══ GILL PLATE — curved arc from dorsal to ventral ══ -->
+    <path stroke-width="2.5"
+          d="M 120,141 C 132,166 132,222 120,250"/>
 
-    <!-- Pre-matra upward hook (the curl at the word's start) -->
-    <path d="M70,158 C54,144 51,120 62,104 C71,91 87,92 95,105"
-          stroke-width="4" fill="none"/>
+    <!-- ══ DORSAL FIN — rises sharply from mid-back ══ -->
+    <path stroke-width="2.5"
+          d="M 238,100 C 250,74 262,56 272,48 C 282,44 296,52 312,99"/>
+    <!-- Fin rays -->
+    <line x1="250" y1="97"  x2="254" y2="68"  stroke-width="0.9"/>
+    <line x1="262" y1="95"  x2="265" y2="52"  stroke-width="0.9"/>
+    <line x1="273" y1="94"  x2="275" y2="49"  stroke-width="0.9"/>
+    <line x1="284" y1="95"  x2="286" y2="53"  stroke-width="0.9"/>
+    <line x1="297" y1="97"  x2="298" y2="63"  stroke-width="0.9"/>
 
-    <!-- Right matra terminal — slight downward curl -->
-    <path d="M430,158 C444,145 448,128 437,113"
-          stroke-width="4" fill="none"/>
+    <!-- ══ PECTORAL FIN — large, fan-shaped, just behind gill plate ══ -->
+    <path stroke-width="2"
+          d="M 138,192 C 155,216 158,248 142,262 C 127,265 120,250 120,250"/>
+    <!-- Pectoral rays -->
+    <line x1="130" y1="250" x2="143" y2="218"  stroke-width="0.7"/>
+    <line x1="134" y1="256" x2="150" y2="226"  stroke-width="0.7"/>
+    <line x1="138" y1="260" x2="156" y2="238"  stroke-width="0.7"/>
 
-    <!-- ══════════════════════════════════════════════
-         LEFT LETTERFORM
-         Vertical stem descending from matra,
-         with a small oval "flag" branching right —
-         characteristic of Bengali আ / ব / ড forms
-    ══════════════════════════════════════════════ -->
+    <!-- ══ PELVIC FIN — small, below mid-body ══ -->
+    <path stroke-width="1.8"
+          d="M 304,283 C 296,298 294,312 302,318 C 312,320 320,310 316,283"/>
 
-    <!-- Main vertical stem -->
-    <path d="M108,158 C108,250 106,320 105,368 C104,392 110,410 122,418 C130,424 142,422 148,414"
-          stroke-width="5" fill="none"/>
+    <!-- ══ ANAL FIN — between pelvic and tail ══ -->
+    <path stroke-width="1.8"
+          d="M 404,274 C 396,288 394,302 402,308 C 412,310 420,298 416,274"/>
 
-    <!-- Small oval flag (the enclosed loop branching from the stem) -->
-    <path d="M107,235 C121,222 156,226 161,249 C166,272 150,287 107,283"
-          stroke-width="3.5" fill="none"/>
+    <!-- ══ SCALES — overlapping arcs, clipped to body region ══
+         Each row offset by half a scale width (brick-wall pattern).
+         Arc direction 0,1 = clockwise = curves downward (toward belly),
+         which is how fish scales present: lower curved edge visible. -->
+    <g clip-path="url(#body-clip)" stroke-width="1.1">
 
-    <!-- ══════════════════════════════════════════════
-         RIGHT LETTERFORM
-         Large enclosed oval — the dominant visual
-         element in Bengali consonants like ক হ ত
-    ══════════════════════════════════════════════ -->
+      <!-- Row 1  y=106 -->
+      <path d="M 144,106 A 26,18 0 0,1 196,106"/>
+      <path d="M 196,106 A 26,18 0 0,1 248,106"/>
+      <path d="M 248,106 A 26,18 0 0,1 300,106"/>
+      <path d="M 300,106 A 26,18 0 0,1 352,106"/>
+      <path d="M 352,106 A 26,18 0 0,1 404,106"/>
+      <path d="M 404,106 A 26,18 0 0,1 456,106"/>
 
-    <!-- Outer boundary of the large form -->
-    <path d="M268,158
-             C268,158 204,176 184,230
-             C164,284 182,348 226,378
-             C258,400 304,402 342,385
-             C382,366 408,322 404,274
-             C400,226 374,183 336,164
-             C314,155 289,153 268,158Z"
-          stroke-width="5" fill="none"/>
+      <!-- Row 2  y=130 — offset -->
+      <path d="M 118,130 A 26,18 0 0,1 170,130"/>
+      <path d="M 170,130 A 26,18 0 0,1 222,130"/>
+      <path d="M 222,130 A 26,18 0 0,1 274,130"/>
+      <path d="M 274,130 A 26,18 0 0,1 326,130"/>
+      <path d="M 326,130 A 26,18 0 0,1 378,130"/>
+      <path d="M 378,130 A 26,18 0 0,1 430,130"/>
+      <path d="M 430,130 A 26,18 0 0,1 462,130"/>
 
-    <!-- Inner oval — the enclosed "eye" that gives Bengali letters
-         their characteristic filled-loop appearance -->
-    <ellipse cx="300" cy="284" rx="76" ry="90" stroke-width="3.2"/>
+      <!-- Row 3  y=154 -->
+      <path d="M 122,154 A 26,18 0 0,1 174,154"/>
+      <path d="M 174,154 A 26,18 0 0,1 226,154"/>
+      <path d="M 226,154 A 26,18 0 0,1 278,154"/>
+      <path d="M 278,154 A 26,18 0 0,1 330,154"/>
+      <path d="M 330,154 A 26,18 0 0,1 382,154"/>
+      <path d="M 382,154 A 26,18 0 0,1 434,154"/>
+      <path d="M 434,154 A 26,18 0 0,1 462,154"/>
 
-    <!-- Descending tail from the right of the outer form -->
-    <path d="M404,274 C417,308 412,354 397,378 C386,396 368,406 352,402"
-          stroke-width="3.5" fill="none"/>
+      <!-- Row 4  y=178 — offset -->
+      <path d="M 118,178 A 26,18 0 0,1 170,178"/>
+      <path d="M 170,178 A 26,18 0 0,1 222,178"/>
+      <path d="M 222,178 A 26,18 0 0,1 274,178"/>
+      <path d="M 274,178 A 26,18 0 0,1 326,178"/>
+      <path d="M 326,178 A 26,18 0 0,1 378,178"/>
+      <path d="M 378,178 A 26,18 0 0,1 430,178"/>
+      <path d="M 430,178 A 26,18 0 0,1 462,178"/>
 
-    <!-- ══════════════════════════════════════════════
-         CONNECTING STROKE
-         The mid-level bridge that reads as script
-    ══════════════════════════════════════════════ -->
-    <path d="M107,281 C148,272 198,268 240,271"
-          stroke-width="2.5"/>
+      <!-- Row 5  y=202 -->
+      <path d="M 120,202 A 26,18 0 0,1 172,202"/>
+      <path d="M 172,202 A 26,18 0 0,1 224,202"/>
+      <path d="M 224,202 A 26,18 0 0,1 276,202"/>
+      <path d="M 276,202 A 26,18 0 0,1 328,202"/>
+      <path d="M 328,202 A 26,18 0 0,1 380,202"/>
+      <path d="M 380,202 A 26,18 0 0,1 432,202"/>
+      <path d="M 432,202 A 26,18 0 0,1 462,202"/>
 
-    <!-- ══════════════════════════════════════════════
-         TERMINAL DOTS — punctuation-like marks
-         that finish each stroke end
-    ══════════════════════════════════════════════ -->
-    <circle cx="70"  cy="158" r="3.5" fill="#CCC4B8" stroke="none"/>
-    <circle cx="250" cy="158" r="4.5" fill="#CCC4B8" stroke="none"/>
-    <circle cx="430" cy="158" r="3.5" fill="#CCC4B8" stroke="none"/>
-    <circle cx="300" cy="284" r="5.5" fill="#CCC4B8" stroke="none"/>
+      <!-- Row 6  y=226 — offset -->
+      <path d="M 122,226 A 26,18 0 0,1 174,226"/>
+      <path d="M 174,226 A 26,18 0 0,1 226,226"/>
+      <path d="M 226,226 A 26,18 0 0,1 278,226"/>
+      <path d="M 278,226 A 26,18 0 0,1 330,226"/>
+      <path d="M 330,226 A 26,18 0 0,1 382,226"/>
+      <path d="M 382,226 A 26,18 0 0,1 434,226"/>
+      <path d="M 434,226 A 26,18 0 0,1 462,226"/>
+
+      <!-- Row 7  y=250 -->
+      <path d="M 128,250 A 26,18 0 0,1 180,250"/>
+      <path d="M 180,250 A 26,18 0 0,1 232,250"/>
+      <path d="M 232,250 A 26,18 0 0,1 284,250"/>
+      <path d="M 284,250 A 26,18 0 0,1 336,250"/>
+      <path d="M 336,250 A 26,18 0 0,1 388,250"/>
+      <path d="M 388,250 A 26,18 0 0,1 440,250"/>
+
+      <!-- Row 8  y=274 — offset -->
+      <path d="M 136,274 A 26,18 0 0,1 188,274"/>
+      <path d="M 188,274 A 26,18 0 0,1 240,274"/>
+      <path d="M 240,274 A 26,18 0 0,1 292,274"/>
+      <path d="M 292,274 A 26,18 0 0,1 344,274"/>
+      <path d="M 344,274 A 26,18 0 0,1 396,274"/>
+      <path d="M 396,274 A 26,18 0 0,1 448,274"/>
+
+    </g>
+
+    <!-- ══ LATERAL LINE — mid-body dashed line, gill to peduncle ══ -->
+    <path stroke-width="0.8" stroke-dasharray="3 6"
+          d="M 124,194 C 220,192 340,190 462,186"/>
+
+    <!-- ══ SHOULDER SPOTS — the iridescent row of dark spots
+         unique to Hilsa ilisha, running above the lateral line
+         just behind the gill plate ══ -->
+    <circle cx="150" cy="162" r="4"   fill="#CCC4B8" stroke="none"/>
+    <circle cx="165" cy="155" r="3.5" fill="#CCC4B8" stroke="none"/>
+    <circle cx="180" cy="150" r="3.5" fill="#CCC4B8" stroke="none"/>
+    <circle cx="195" cy="146" r="3"   fill="#CCC4B8" stroke="none"/>
+    <circle cx="210" cy="143" r="2.5" fill="#CCC4B8" stroke="none"/>
+    <circle cx="224" cy="141" r="2"   fill="#CCC4B8" stroke="none"/>
+
+    <!-- ══ EYE ══ -->
+    <circle cx="92"  cy="188" r="11"  stroke-width="2"/>
+    <circle cx="92"  cy="188" r="4.5" fill="#CCC4B8" stroke="none"/>
 
   </g>
 </svg>
