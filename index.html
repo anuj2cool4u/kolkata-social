@@ -84,11 +84,13 @@
     }
     .nav.scrolled { box-shadow: 0 1px 18px rgba(26,23,20,.06); }
     .nav__logo {
-      font-family: var(--serif);
-      font-size: 1rem;
-      font-weight: 400;
-      letter-spacing: .15em;
-      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+    }
+    .nav__logo img {
+      height: 38px;
+      width: auto;
+      display: block;
     }
     .nav__links {
       list-style: none;
@@ -202,13 +204,22 @@
       display: flex;
       flex-direction: column;
       gap: 0;
-      /* Bengali letterform — single centrepiece, embossed into the cream */
       background-color: var(--cream);
-      background-image: url('assets/pattern.svg');
+      position: relative;
+    }
+    .opening::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('assets/images/logos/Kolkatafishzoom%20-%20Edited%20(1).png');
       background-repeat: no-repeat;
       background-position: center center;
       background-size: min(780px, 92vw) auto;
+      opacity: 0.07;
+      pointer-events: none;
+      z-index: 0;
     }
+    .opening > * { position: relative; z-index: 1; }
     .opening__loc {
       font-size: .68rem;
       letter-spacing: .22em;
@@ -570,11 +581,10 @@
       flex-wrap: wrap;
       gap: 1rem;
     }
-    .footer__logo {
-      font-family: var(--serif);
-      font-size: .95rem;
-      letter-spacing: .14em;
-      text-transform: uppercase;
+    .footer__logo img {
+      height: 28px;
+      width: auto;
+      display: block;
     }
     .footer__copy { font-size: .6rem; color: var(--muted); }
     .footer__links { display: flex; gap: 2rem; }
@@ -771,12 +781,11 @@
       <button class="popup__close" id="popup-close" aria-label="Close">✕</button>
       <span class="popup__kicker">From the kitchen</span>
       <h2 class="popup__heading" id="popup-heading">
-        Something new<br><em>is arriving.</em>
+        Bengali food<br><em>shaped by memory.</em>
       </h2>
-      <!-- TODO: Replace the paragraph below with Chef Ahana's seasonal note once received -->
       <p class="popup__body">
-        Chef Ahana's next seasonal menu is being composed.
-        Her note will appear here — watch this space.
+        Our menus change with the seasons, guided by what's best from our producers.
+        What you see is a sample — come in and let Ahana's kitchen surprise you.
       </p>
       <div class="popup__actions">
         <button class="popup__cta" id="popup-cta">Explore the menu →</button>
@@ -804,7 +813,9 @@
 
   <!-- nav -->
   <header class="nav" id="nav">
-    <a href="#" class="nav__logo">Kolkata Social</a>
+    <a href="#" class="nav__logo">
+      <img src="assets/images/logos/Logo both scripts zoom - Edited (1) (2).png" alt="Kolkata Social">
+    </a>
     <ul class="nav__links">
       <li><a href="#story">about</a></li>
       <li><a href="#food">menu</a></li>
@@ -846,25 +857,27 @@
   <div class="story" id="story">
 
     <h2 class="story__heading" data-reveal>
-      Heritage<br>on a plate.<br>
-      <em>Third culture<br>on the palate.</em>
+      A love letter<br>to Bengali<br>cuisine.<br>
+      <em>Through a third<br>culture lens.</em>
     </h2>
 
     <div class="story__body" data-reveal>
       <p>
-        Kolkata Social honours Bengali heritage while exploring the depth
-        and complexity of its flavours in new ways — through a third culture lens.
+        Kolkata Social is a restaurant borne out of the desire to showcase the cuisine
+        <strong>Chef Ahana</strong> grew up with. Bengali food shaped by memory, migration
+        and lived experience — a space where different generations come together to relive
+        memories while creating new ones.
       </p>
       <p>
-        <!-- TODO: Confirm Chef name, restaurant credits (Firedoor, Raja) with owner -->
-        Led by <strong>Chef Ahana Dutt</strong>, born and raised in Kolkata and shaped
-        by kitchens including <strong>Firedoor</strong> and <strong>Raja</strong>, the menu
-        champions local producers and seasonal ingredients brought to life through
-        traditional techniques and time-honoured family recipes.
+        At its heart, Kolkata Social is a reflection of a shared immigrant experience:
+        building something new while staying rooted in your culture. The restaurant brings
+        together the warmth of Bengali hospitality, the energy of Kolkata's social culture,
+        and a diverse approach to contemporary dining in Sydney.
       </p>
       <p>
-        More than a restaurant — a space for training future talent, fostering
-        a nearly all-female team, and championing women in hospitality.
+        Ahana's love for cooking came inherently from her mother — from her she learnt
+        what seasonality meant and the importance of building relationships with your
+        producers. That philosophy shapes every dish on the menu.
       </p>
       <p><em>Come for the food. Stay for the stories.</em></p>
       <!-- TODO: Replace # with OpenTable reservation link -->
@@ -951,11 +964,15 @@
     </div>
 
     <div class="food__footer" data-reveal>
-      <!-- TODO: Link to menu PDF once received from owner/chef. Replace span with <a> tag. -->
-      <span class="food__menu-link food__menu-ph"
-            title="Full menu PDF coming — drop it to hello@kolkatasocial.com.au">
-        Full menu coming soon
-      </span>
+      <p style="font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1.25rem;">
+        Sample menus — dishes change seasonally
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:1.5rem;align-items:center;">
+        <a href="assets/menus/Copy of 313 (1).pdf" target="_blank" rel="noopener" class="food__menu-link">Main Menu →</a>
+        <a href="assets/menus/REGULAR SET MENU (1).pdf" target="_blank" rel="noopener" class="food__menu-link">Set Menu →</a>
+        <a href="assets/menus/VEGAN SET MENU (1).pdf" target="_blank" rel="noopener" class="food__menu-link">Vegan Set Menu →</a>
+        <a href="assets/menus/New drinks list draft (1).pdf" target="_blank" rel="noopener" class="food__menu-link">Drinks →</a>
+      </div>
     </div>
 
   </section>
@@ -1060,7 +1077,9 @@
 
   <!-- ══════════════ FOOTER ════════════════ -->
   <footer class="footer">
-    <span class="footer__logo">Kolkata Social</span>
+    <span class="footer__logo">
+      <img src="assets/images/logos/Logo both scripts zoom - Edited (1) (2).png" alt="Kolkata Social">
+    </span>
     <span class="footer__copy">© 2026 Kolkata Social. All rights reserved.</span>
     <nav class="footer__links">
       <a href="#story">about</a>
