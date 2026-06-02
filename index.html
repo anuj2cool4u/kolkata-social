@@ -1069,7 +1069,7 @@
       </p>
 
       <!-- Enquiry form -->
-      <form class="enquiry-form" id="enquiry-form" onsubmit="handleEnquiry(event)">
+      <form class="enquiry-form" id="enquiry-form" action="https://formspree.io/f/mwvzglon" method="POST" onsubmit="handleEnquiry(event)">
         <div class="enquiry-form__row">
           <div class="enquiry-form__field">
             <label for="eq-name">Name</label>
@@ -1290,24 +1290,32 @@
     document.querySelectorAll('[data-reveal], [data-reveal-group]')
       .forEach(el => revealObserver.observe(el));
 
-    // ── Enquiry form ─────────────────────────
-    function handleEnquiry(e) {
+    // ── Enquiry form — Formspree ─────────────
+    async function handleEnquiry(e) {
       e.preventDefault();
-      const form = document.getElementById('enquiry-form');
+      const form   = document.getElementById('enquiry-form');
+      const btn    = form.querySelector('.enquiry-form__submit');
       const thanks = document.getElementById('enquiry-thanks');
-      const data = new FormData(form);
-      // TODO: wire to a backend / Formspree / Netlify Forms when ready
-      // For now, open mailto as fallback
-      const name    = data.get('name');
-      const email   = data.get('email');
-      const date    = data.get('date') || 'TBC';
-      const guests  = data.get('guests') || 'TBC';
-      const message = data.get('message') || '';
-      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nDate: ${date}\nGuests: ${guests}\n\n${message}`);
-      window.location.href = `mailto:hello@kolkatasocial.com.au?subject=Private Dining Enquiry&body=${body}`;
-      form.reset();
-      thanks.style.display = 'block';
-      setTimeout(() => { thanks.style.display = 'none'; }, 5000);
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          form.reset();
+          btn.style.display = 'none';
+          thanks.style.display = 'block';
+        } else {
+          btn.textContent = 'Something went wrong — try again';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = 'Something went wrong — try again';
+        btn.disabled = false;
+      }
     }
 
     // ── Popup — shows once per session ───────
