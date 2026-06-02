@@ -172,28 +172,6 @@
       margin-top: .5rem;
     }
 
-    /* ─────────────────────────────────────────
-       MOBILE STICKY CTA
-    ───────────────────────────────────────── */
-    .mob-cta { display: none; }
-    @media (max-width: 960px) {
-      body { padding-bottom: var(--mob-cta); }
-      .mob-cta {
-        display: flex;
-        position: fixed;
-        bottom: 0; left: 0; right: 0;
-        z-index: 700;
-        height: var(--mob-cta);
-        align-items: center;
-        justify-content: center;
-        background: var(--ink);
-        color: #fff;
-        font-size: .7rem;
-        letter-spacing: .2em;
-        text-transform: uppercase;
-        cursor: pointer;
-      }
-    }
 
     /* ─────────────────────────────────────────
        OPENING
@@ -908,12 +886,6 @@
       </div>
     </div>
   </div>
-
-  <!-- mobile sticky CTA -->
-  <!-- TODO: Replace # with OpenTable reservation link when ready -->
-  <a class="mob-cta" href="#" title="Reservations via OpenTable — link coming soon">
-    Reserve a Table →
-  </a>
 
   <!-- drawer -->
   <nav class="drawer" id="drawer" aria-hidden="true">
