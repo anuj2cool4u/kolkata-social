@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menus — Kolkata Social</title>
+  <meta name="description" content="Seasonal Bengali menus at Kolkata Social, Newtown. À la carte, set menu, vegan and drinks.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #F4F1EB;
+      --ink:   #1A1714;
+      --muted: #7A746E;
+      --rule:  rgba(26,23,20,.12);
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'DM Sans', system-ui, sans-serif;
+      --nav-h: 62px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 900;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      background: var(--cream);
+      border-bottom: 1px solid var(--rule);
+      transition: box-shadow .3s ease;
+    }
+    .nav.scrolled { box-shadow: 0 1px 18px rgba(26,23,20,.06); }
+    .nav__logo { display: flex; align-items: center; }
+    .nav__logo img { height: 38px; width: auto; display: block; }
+    .nav__links { list-style: none; display: flex; align-items: center; gap: 2rem; }
+    .nav__links a {
+      font-size: .7rem; letter-spacing: .1em; color: inherit; opacity: .6; transition: opacity .2s;
+    }
+    .nav__links a:hover { opacity: 1; }
+    .nav__links a.active { opacity: 1; border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+    .nav__reserve { opacity: 1 !important; border-bottom: 1px solid currentColor; padding-bottom: 1px; font-weight: 400; }
+    .nav__burger {
+      display: none; flex-direction: column; justify-content: center; gap: 5px;
+      width: 36px; height: 36px; background: none; border: none; cursor: pointer; color: inherit;
+    }
+    .nav__burger span {
+      display: block; width: 22px; height: 1.5px; background: currentColor;
+      border-radius: 1px; transition: transform .3s ease, opacity .3s ease; transform-origin: center;
+    }
+    .nav__burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav__burger.open span:nth-child(2) { opacity: 0; }
+    .nav__burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ── DRAWER ── */
+    .drawer {
+      position: fixed; inset: 0; z-index: 800; background: var(--cream);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 2.25rem; transform: translateX(100%); transition: transform .38s cubic-bezier(.4,0,.2,1);
+    }
+    .drawer.open { transform: none; }
+    .drawer a { font-family: var(--serif); font-size: 2.6rem; font-weight: 300; color: var(--ink); transition: font-style .15s; }
+    .drawer a:hover { font-style: italic; }
+    .drawer__reserve {
+      font-family: var(--sans) !important; font-size: .72rem !important;
+      letter-spacing: .16em; text-transform: uppercase;
+      border-bottom: 1px solid var(--ink); padding-bottom: 2px; margin-top: .5rem;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: calc(var(--nav-h) + 7rem) 2.5rem 5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .hero__kicker {
+      font-size: .68rem; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 1.5rem;
+    }
+    .hero__title {
+      font-family: var(--serif);
+      font-size: clamp(3.5rem, 8vw, 7.5rem);
+      font-weight: 300; font-style: italic; line-height: .95;
+      margin-bottom: 1.75rem;
+    }
+    .hero__note {
+      font-size: .8rem; color: var(--muted); line-height: 1.7; max-width: 52ch;
+    }
+
+    /* ── MENU GRID ── */
+    .menus {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .menu-item {
+      padding: 4rem 2.5rem;
+      border-right: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      transition: background .2s;
+    }
+    .menu-item:hover { background: rgba(26,23,20,.02); }
+    .menu-item:nth-child(even) { border-right: none; }
+    .menu-item:nth-last-child(-n+2) { border-bottom: none; }
+    .menu-item__num {
+      font-family: var(--serif);
+      font-size: 2.5rem; font-style: italic; font-weight: 300;
+      color: var(--rule); line-height: 1;
+    }
+    .menu-item__name {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+      font-weight: 300; line-height: 1.1;
+    }
+    .menu-item__name em { font-style: italic; }
+    .menu-item__desc {
+      font-size: .875rem; line-height: 1.85; color: var(--muted); max-width: 38ch;
+      flex: 1;
+    }
+    .menu-item__link {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .68rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 2px;
+      align-self: flex-start;
+      transition: color .2s, border-color .2s;
+    }
+    .menu-item__link:hover { color: var(--muted); border-color: var(--muted); }
+
+    /* ── FOOTER ── */
+    .footer {
+      border-top: 1px solid var(--rule);
+      padding: 1.5rem 2.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer__logo img { height: 28px; width: auto; display: block; }
+    .footer__copy { font-size: .6rem; color: var(--muted); }
+    .footer__social { display: flex; gap: 2rem; }
+    .footer__social a {
+      font-size: .6rem; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--muted); transition: color .2s;
+    }
+    .footer__social a:hover { color: var(--ink); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      :root { --nav-h: 56px; }
+      .nav { padding: 0 1.5rem; }
+      .nav__links { display: none; }
+      .nav__burger { display: flex; }
+      .hero { padding: calc(var(--nav-h) + 3.5rem) 1.5rem 3.5rem; }
+      .menus { grid-template-columns: 1fr; }
+      .menu-item { padding: 3rem 1.5rem; border-right: none; border-bottom: 1px solid var(--rule); }
+      .menu-item:last-child { border-bottom: none; }
+      .menu-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--rule); }
+      .menu-item:last-child { border-bottom: none; }
+      .footer { flex-direction: column; align-items: center; text-align: center; padding: 1.5rem; }
+      .footer__social { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="drawer" id="drawer" aria-hidden="true">
+    <a href="index.html">home</a>
+    <a href="about.html">about</a>
+    <a href="menus.html">menu</a>
+    <a href="whatson.html">what's on</a>
+    <a href="index.html#events">events</a>
+    <a href="index.html#contact">contact</a>
+    <a class="drawer__reserve" href="#" title="Reservations via OpenTable — link coming soon">reserve →</a>
+  </nav>
+
+  <header class="nav" id="nav">
+    <a href="index.html" class="nav__logo">
+      <img src="assets/images/logos/Logo both scripts zoom - Edited (1) (2).png" alt="Kolkata Social">
+    </a>
+    <ul class="nav__links">
+      <li><a href="about.html">about</a></li>
+      <li><a href="menus.html" class="active">menu</a></li>
+      <li><a href="whatson.html">what's on</a></li>
+      <li><a href="index.html#events">events</a></li>
+      <li><a href="index.html#contact">contact</a></li>
+      <li><a href="#" class="nav__reserve" title="Reservations via OpenTable — link coming soon">reserve</a></li>
+    </ul>
+    <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <p class="hero__kicker">Kolkata Social — Newtown</p>
+    <h1 class="hero__title">Our<br><em>menus.</em></h1>
+    <p class="hero__note">
+      Our menus change with the seasons, guided by what's best from our producers.
+      What you see below is a sample — come in and let the kitchen surprise you.
+    </p>
+  </section>
+
+  <!-- ── MENUS ── -->
+  <div class="menus">
+
+    <div class="menu-item">
+      <p class="menu-item__num">01</p>
+      <h2 class="menu-item__name">À La<br><em>Carte</em></h2>
+      <p class="menu-item__desc">
+        The full range of Ahana's kitchen — starters, mains and sides,
+        each dish a conversation between Bengali heritage and the seasons.
+      </p>
+      <a href="assets/menus/Ala Carte menu.pdf" target="_blank" rel="noopener" class="menu-item__link">
+        View Menu →
+      </a>
+    </div>
+
+    <div class="menu-item">
+      <p class="menu-item__num">02</p>
+      <h2 class="menu-item__name">Set<br><em>Menu</em></h2>
+      <p class="menu-item__desc">
+        A curated journey through the menu — let us guide you through
+        the flavours of Bengal, course by course.
+      </p>
+      <a href="assets/menus/Regular Set Menu.pdf" target="_blank" rel="noopener" class="menu-item__link">
+        View Menu →
+      </a>
+    </div>
+
+    <div class="menu-item">
+      <p class="menu-item__num">03</p>
+      <h2 class="menu-item__name">Vegan<br><em>Set Menu</em></h2>
+      <p class="menu-item__desc">
+        Bengali cuisine has always celebrated vegetables. This menu is
+        a testament to that — plant-based, deeply flavoured, entirely satisfying.
+      </p>
+      <a href="assets/menus/Vegan Set Menu.pdf" target="_blank" rel="noopener" class="menu-item__link">
+        View Menu →
+      </a>
+    </div>
+
+    <div class="menu-item">
+      <p class="menu-item__num">04</p>
+      <h2 class="menu-item__name">Drinks<br><em>Menu</em></h2>
+      <p class="menu-item__desc">
+        Cocktails inspired by the spice routes, alongside wine, beer
+        and non-alcoholic options. Happy Hour Wed–Sat, 4–5:30pm.
+      </p>
+      <a href="assets/menus/Drinks Menu.pdf" target="_blank" rel="noopener" class="menu-item__link">
+        View Menu →
+      </a>
+    </div>
+
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <span class="footer__logo">
+      <img src="assets/images/logos/Logo both scripts zoom - Edited (1) (2).png" alt="Kolkata Social">
+    </span>
+    <span class="footer__copy">© 2026 Kolkata Social. All rights reserved.</span>
+    <div class="footer__social">
+      <a href="https://www.instagram.com/kolkatasocial_?igsh=MTRoOXhkc2ZidXk0cQ%3D%3D&utm_source=qr" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.facebook.com/share/18mfAGdTDq/?mibextid=wwXIfr" target="_blank" rel="noopener">Facebook</a>
+    </div>
+  </footer>
+
+  <script>
+    if (history.scrollRestoration) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 20); }, { passive: true });
+    const burger = document.getElementById('burger');
+    const drawer = document.getElementById('drawer');
+    function openDrawer() { drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); burger.classList.add('open'); burger.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; }
+    function closeDrawer() { drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); burger.classList.remove('open'); burger.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
+    burger.addEventListener('click', () => drawer.classList.contains('open') ? closeDrawer() : openDrawer());
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+  </script>
+
+</body>
+</html>

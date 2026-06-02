@@ -199,13 +199,25 @@
        OPENING
     ───────────────────────────────────────── */
     .opening {
-      padding: calc(var(--nav-h) + 5rem) 2.5rem 5.5rem;
+      padding: calc(var(--nav-h) + 8rem) 2.5rem 7rem;
       border-bottom: 1px solid var(--rule);
       display: flex;
       flex-direction: column;
       gap: 0;
       background-color: var(--cream);
       position: relative;
+      overflow: hidden;
+    }
+    /* Outside photo layer — swap src when photo arrives */
+    .opening__bg-photo {
+      position: absolute;
+      inset: 0;
+      background-image: url('assets/images/venue/outside entry shot.JPG'); /* TODO: replace with exterior shot when received */
+      background-size: cover;
+      background-position: center 60%;
+      opacity: 0.08;
+      pointer-events: none;
+      z-index: 0;
     }
     .opening::before {
       content: '';
@@ -215,7 +227,7 @@
       background-repeat: no-repeat;
       background-position: center center;
       background-size: min(780px, 92vw) auto;
-      opacity: 0.07;
+      opacity: 0.05;
       pointer-events: none;
       z-index: 0;
     }
@@ -229,11 +241,11 @@
     }
     .opening__title {
       font-family: var(--serif);
-      font-size: clamp(3.8rem, 9vw, 9rem);
+      font-size: clamp(4.5rem, 11vw, 11rem);
       font-weight: 300;
       font-style: italic;
-      line-height: .98;
-      margin-bottom: 4rem;
+      line-height: .95;
+      margin-bottom: 5rem;
     }
     .opening__row {
       display: flex;
@@ -485,6 +497,109 @@
       align-self: flex-start;
     }
 
+    /* Events reversed layout */
+    .events--reverse { flex-direction: row-reverse; }
+    @media (max-width: 960px) { .events--reverse { flex-direction: column; } }
+
+    /* Event cards */
+    .events__cards {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: .5rem 0 1.25rem;
+      border-top: 1px solid var(--rule);
+    }
+    .events__card {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .events__card-day {
+      font-size: .6rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: .35rem;
+    }
+    .events__card-name {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 300;
+      margin-bottom: .4rem;
+    }
+    .events__card-desc {
+      font-size: .875rem;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    /* Enquiry form */
+    .enquiry-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .enquiry-form__row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .enquiry-form__field {
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+    }
+    .enquiry-form__field label {
+      font-size: .6rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .enquiry-form__field input,
+    .enquiry-form__field textarea {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--rule);
+      padding: .5rem 0;
+      font-family: var(--sans);
+      font-size: .875rem;
+      font-weight: 300;
+      color: var(--ink);
+      outline: none;
+      transition: border-color .2s;
+      resize: none;
+      width: 100%;
+    }
+    .enquiry-form__field input:focus,
+    .enquiry-form__field textarea:focus { border-color: var(--ink); }
+    .enquiry-form__field input::placeholder,
+    .enquiry-form__field textarea::placeholder { color: var(--muted); opacity: .5; }
+    .enquiry-form__submit {
+      align-self: flex-start;
+      background: none;
+      border: none;
+      border-bottom: 1px solid var(--ink);
+      padding: 0 0 2px;
+      font-family: var(--sans);
+      font-size: .68rem;
+      font-weight: 300;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--ink);
+      cursor: pointer;
+      transition: color .2s, border-color .2s;
+      margin-top: .5rem;
+    }
+    .enquiry-form__submit:hover { color: var(--muted); border-color: var(--muted); }
+    .enquiry-form__thanks {
+      font-size: .8rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+    @media (max-width: 960px) {
+      .enquiry-form__row { grid-template-columns: 1fr; }
+    }
+
     /* ─────────────────────────────────────────
        CONTACT
     ───────────────────────────────────────── */
@@ -587,15 +702,15 @@
       display: block;
     }
     .footer__copy { font-size: .6rem; color: var(--muted); }
-    .footer__links { display: flex; gap: 2rem; }
-    .footer__links a {
+    .footer__social { display: flex; gap: 2rem; }
+    .footer__social a {
       font-size: .6rem;
       letter-spacing: .1em;
       text-transform: uppercase;
       color: var(--muted);
       transition: color .2s;
     }
-    .footer__links a:hover { color: var(--ink); }
+    .footer__social a:hover { color: var(--ink); }
 
     /* ─────────────────────────────────────────
        POPUP — specials / menu announcement
@@ -802,10 +917,11 @@
 
   <!-- drawer -->
   <nav class="drawer" id="drawer" aria-hidden="true">
-    <a href="about.html" onclick="closeDrawer()">about</a>
-    <a href="#food"    onclick="closeDrawer()">menu</a>
-    <a href="#events"  onclick="closeDrawer()">events</a>
-    <a href="#contact" onclick="closeDrawer()">contact</a>
+    <a href="about.html"   onclick="closeDrawer()">about</a>
+    <a href="menus.html"   onclick="closeDrawer()">menu</a>
+    <a href="whatson.html" onclick="closeDrawer()">what's on</a>
+    <a href="#events"      onclick="closeDrawer()">events</a>
+    <a href="#contact"     onclick="closeDrawer()">contact</a>
     <!-- TODO: Replace # with OpenTable reservation link -->
     <a class="drawer__reserve" href="#" onclick="closeDrawer()"
        title="Reservations via OpenTable — link coming soon">reserve →</a>
@@ -818,10 +934,10 @@
     </a>
     <ul class="nav__links">
       <li><a href="about.html">about</a></li>
-      <li><a href="#food">menu</a></li>
+      <li><a href="menus.html">menu</a></li>
+      <li><a href="whatson.html">what's on</a></li>
       <li><a href="#events">events</a></li>
       <li><a href="#contact">contact</a></li>
-      <!-- TODO: Replace # with OpenTable reservation link -->
       <li><a href="#" class="nav__reserve"
              title="Reservations via OpenTable — link coming soon">reserve</a></li>
     </ul>
@@ -833,18 +949,17 @@
 
   <!-- ══════════════ OPENING ═════════════════ -->
   <section class="opening">
+    <div class="opening__bg-photo" aria-hidden="true"></div>
     <p class="opening__loc">Bengali Restaurant &amp; Bar · Newtown, Sydney</p>
     <h1 class="opening__title" data-reveal>
       A love letter<br>to Bengali<br>cuisine.
     </h1>
     <div class="opening__row">
-      <!-- TODO: Confirm these hours with owner before launch -->
-      <span class="opening__detail">Dinner · Tue – Sat · from 5:30pm</span>
+      <span class="opening__detail">Happy Hour · Wed – Sat · 4 – 5:30pm</span>
       <span class="opening__sep" aria-hidden="true"></span>
-      <span class="opening__detail">Lunch · Saturday · 11:30am – 2pm</span>
+      <span class="opening__detail">Dinner · Tue – Sat · 5:30 – 10pm</span>
       <span class="opening__sep" aria-hidden="true"></span>
-      <span class="opening__detail">528 King St, Newtown</span>
-      <!-- TODO: Replace # with OpenTable reservation link -->
+      <span class="opening__detail">528–528A King St, Newtown</span>
       <a href="#" class="opening__reserve"
          title="Reservations via OpenTable — link coming soon">
         Reserve a Table →
@@ -866,7 +981,6 @@
         Bengali food shaped by memory, migration and lived experience —
         brought to life by <strong>Chef Ahana</strong> in the heart of Newtown.
       </p>
-      <p><em>Come for the food. Stay for the stories.</em></p>
       <a href="about.html" class="story__link">Our story →</a>
     </div>
 
@@ -944,19 +1058,79 @@
     </div>
 
     <div class="events__text" data-reveal>
-      <p class="events__label">Private Dining &amp; Events</p>
+      <p class="events__label">What's On</p>
       <h2 class="events__heading">
         Gather in the warmth<br>of <em>Kolkata.</em>
       </h2>
+
+      <!-- Recurring events -->
+      <div class="events__cards">
+        <div class="events__card">
+          <p class="events__card-day">Every Tuesday</p>
+          <p class="events__card-name">Thali Tuesday</p>
+          <p class="events__card-desc">A full Bengali thali — everything on one plate, the way it was meant to be eaten.</p>
+        </div>
+        <div class="events__card">
+          <p class="events__card-day">Wed – Sat · 4 – 5:30pm</p>
+          <p class="events__card-name">Happy Hour</p>
+          <p class="events__card-desc">Curated cocktails and small bites before the evening begins.</p>
+        </div>
+      </div>
+
+      <a href="whatson.html" class="events__link" style="margin-top:.5rem;">See all events →</a>
+    </div>
+
+  </div>
+
+  <!-- ══════════════ PRIVATE DINING ════════════ -->
+  <div class="events events--reverse" id="private-dining">
+
+    <div class="events__text" data-reveal>
+      <p class="events__label">Private Dining &amp; Events</p>
+      <h2 class="events__heading">
+        Your event,<br><em>our kitchen.</em>
+      </h2>
       <p class="events__body">
-        Our intimate, light-filled space in the heart of Newtown is the
-        perfect setting for private events, celebrations and group bookings.
+        Our intimate space in the heart of Newtown is the perfect setting
+        for private events, celebrations and group bookings.
         Bengali dishes, curated cocktails, genuine hospitality.
       </p>
-      <!-- TODO: Confirm events enquiry email with owner -->
-      <a href="mailto:hello@kolkatasocial.com.au" class="events__link">
-        Enquire about events →
-      </a>
+
+      <!-- Enquiry form -->
+      <form class="enquiry-form" id="enquiry-form" onsubmit="handleEnquiry(event)">
+        <div class="enquiry-form__row">
+          <div class="enquiry-form__field">
+            <label for="eq-name">Name</label>
+            <input type="text" id="eq-name" name="name" placeholder="Your name" required>
+          </div>
+          <div class="enquiry-form__field">
+            <label for="eq-email">Email</label>
+            <input type="email" id="eq-email" name="email" placeholder="your@email.com" required>
+          </div>
+        </div>
+        <div class="enquiry-form__row">
+          <div class="enquiry-form__field">
+            <label for="eq-date">Preferred date</label>
+            <input type="date" id="eq-date" name="date">
+          </div>
+          <div class="enquiry-form__field">
+            <label for="eq-guests">Number of guests</label>
+            <input type="number" id="eq-guests" name="guests" placeholder="e.g. 20" min="1">
+          </div>
+        </div>
+        <div class="enquiry-form__field">
+          <label for="eq-message">Tell us about your event</label>
+          <textarea id="eq-message" name="message" rows="3" placeholder="Occasion, dietary requirements, any questions…"></textarea>
+        </div>
+        <button type="submit" class="enquiry-form__submit">Send Enquiry →</button>
+        <p class="enquiry-form__thanks" id="enquiry-thanks" style="display:none;">
+          Thank you — we'll be in touch shortly.
+        </p>
+      </form>
+    </div>
+
+    <div class="events__img" data-reveal>
+      <img src="assets/images/venue/plant wall.JPG" alt="Kolkata Social venue" loading="lazy">
     </div>
 
   </div>
@@ -966,20 +1140,19 @@
 
     <div class="contact__col" data-reveal>
       <p class="contact__label">Opening Hours</p>
-      <!-- TODO: Confirm all hours with owner before launch -->
       <div class="hours-row">
         <span class="hours-day">Monday</span>
         <span class="hours-time">Closed</span>
       </div>
       <div class="hours-row">
-        <span class="hours-day">Tue – Fri</span>
-        <span class="hours-time">Dinner 5:30 – 10:30pm</span>
+        <span class="hours-day">Tuesday</span>
+        <span class="hours-time">Dinner 5:30 – 10pm</span>
       </div>
       <div class="hours-row">
-        <span class="hours-day">Saturday</span>
+        <span class="hours-day">Wed – Sat</span>
         <span class="hours-time">
-          Lunch 11:30am – 2pm<br>
-          Dinner 5:30 – 10:30pm
+          Happy Hour 4 – 5:30pm<br>
+          Dinner 5:30 – 10pm
         </span>
       </div>
       <div class="hours-row">
@@ -993,7 +1166,7 @@
       <p class="contact__address">
         <a href="https://maps.app.goo.gl/Lt3rR661rgcphdy27"
            target="_blank" rel="noopener">
-          528 King Street,<br>Newtown NSW 2042
+          528–528A King Street,<br>Newtown NSW 2042
         </a>
       </p>
       <!-- TODO: Confirm phone number with owner -->
@@ -1033,12 +1206,10 @@
       <img src="assets/images/logos/Logo both scripts zoom - Edited (1) (2).png" alt="Kolkata Social">
     </span>
     <span class="footer__copy">© 2026 Kolkata Social. All rights reserved.</span>
-    <nav class="footer__links">
-      <a href="#story">about</a>
-      <a href="#food">menu</a>
-      <a href="#events">events</a>
-      <a href="#contact">contact</a>
-    </nav>
+    <div class="footer__social">
+      <a href="https://www.instagram.com/kolkatasocial_?igsh=MTRoOXhkc2ZidXk0cQ%3D%3D&utm_source=qr" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.facebook.com/share/18mfAGdTDq/?mibextid=wwXIfr" target="_blank" rel="noopener">Facebook</a>
+    </div>
   </footer>
 
   <!-- schema -->
@@ -1051,7 +1222,7 @@
     "telephone": "+61-448-773-256",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "528 King Street",
+      "streetAddress": "528-528A King Street",
       "addressLocality": "Newtown",
       "addressRegion": "NSW",
       "postalCode": "2042",
@@ -1059,12 +1230,11 @@
     },
     "openingHoursSpecification": [
       { "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday"],
-        "opens": "17:30", "closes": "22:30" },
+        "dayOfWeek": ["Tuesday"],
+        "opens": "17:30", "closes": "22:00" },
       { "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Saturday"], "opens": "11:30", "closes": "14:00" },
-      { "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Saturday"], "opens": "17:30", "closes": "22:30" }
+        "dayOfWeek": ["Wednesday","Thursday","Friday","Saturday"],
+        "opens": "16:00", "closes": "22:00" }
     ],
     "servesCuisine": ["Bengali","Indian"],
     "priceRange": "$$",
@@ -1147,6 +1317,26 @@
 
     document.querySelectorAll('[data-reveal], [data-reveal-group]')
       .forEach(el => revealObserver.observe(el));
+
+    // ── Enquiry form ─────────────────────────
+    function handleEnquiry(e) {
+      e.preventDefault();
+      const form = document.getElementById('enquiry-form');
+      const thanks = document.getElementById('enquiry-thanks');
+      const data = new FormData(form);
+      // TODO: wire to a backend / Formspree / Netlify Forms when ready
+      // For now, open mailto as fallback
+      const name    = data.get('name');
+      const email   = data.get('email');
+      const date    = data.get('date') || 'TBC';
+      const guests  = data.get('guests') || 'TBC';
+      const message = data.get('message') || '';
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nDate: ${date}\nGuests: ${guests}\n\n${message}`);
+      window.location.href = `mailto:hello@kolkatasocial.com.au?subject=Private Dining Enquiry&body=${body}`;
+      form.reset();
+      thanks.style.display = 'block';
+      setTimeout(() => { thanks.style.display = 'none'; }, 5000);
+    }
 
     // ── Popup — shows once per session ───────
     const popupEl      = document.getElementById('popup');
