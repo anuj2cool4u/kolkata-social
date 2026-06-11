@@ -186,30 +186,27 @@
       position: relative;
       overflow: hidden;
     }
-    /* Outside photo layer — swap src when photo arrives */
+    /* Hero background photo */
     .opening__bg-photo {
       position: absolute;
       inset: 0;
       background-image: url('assets/images/venue/FrontDoorView.jpeg');
       background-size: cover;
-      background-position: center 60%;
-      opacity: 0.12;
+      background-position: center center;
+      opacity: 1;
       pointer-events: none;
       z-index: 0;
     }
+    /* Cream overlay so text stays readable */
     .opening::before {
       content: '';
       position: absolute;
       inset: 0;
-      background-image: url('assets/images/logos/Kolkatafishzoom%20-%20Edited%20(1).png');
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: min(780px, 92vw) auto;
-      opacity: 0.05;
+      background: rgba(244,241,235,0.82);
       pointer-events: none;
-      z-index: 0;
+      z-index: 1;
     }
-    .opening > * { position: relative; z-index: 1; }
+    .opening > * { position: relative; z-index: 2; }
     .opening__loc {
       font-size: .68rem;
       letter-spacing: .22em;
