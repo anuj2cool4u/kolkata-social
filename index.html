@@ -196,12 +196,24 @@
       pointer-events: none;
       z-index: 0;
     }
-    /* Cream overlay so text stays readable */
+    /* Directional scrim: dense where text sits (top-left + bottom),
+       light elsewhere so the photo stays alive */
     .opening::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(244,241,235,0.60);
+      background:
+        /* bottom band — hours / address / reserve row */
+        linear-gradient(to top,
+          rgba(244,241,235,.96) 0%,
+          rgba(244,241,235,.88) 16%,
+          rgba(244,241,235,0)   38%),
+        /* left-to-right — headline block */
+        linear-gradient(100deg,
+          rgba(244,241,235,.94) 0%,
+          rgba(244,241,235,.82) 40%,
+          rgba(244,241,235,.38) 72%,
+          rgba(244,241,235,.22) 100%);
       pointer-events: none;
       z-index: 1;
     }
@@ -211,7 +223,7 @@
       font-size: .68rem;
       letter-spacing: .22em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: rgba(26,23,20,.72); /* over photo: muted gray fails, use translucent ink */
       margin-bottom: 2.25rem;
     }
     .opening__title {
@@ -227,17 +239,17 @@
       align-items: center;
       gap: 2.5rem;
       flex-wrap: wrap;
-      border-top: 1px solid var(--rule);
+      border-top: 1px solid rgba(26,23,20,.28); /* hairline at 12% disappears over photo */
       padding-top: 2rem;
     }
     .opening__detail {
       font-size: .75rem;
       letter-spacing: .08em;
-      color: var(--muted);
+      color: rgba(26,23,20,.85); /* near-ink: small type needs max contrast on imagery */
     }
     .opening__sep {
       width: 1px; height: 1rem;
-      background: var(--rule);
+      background: rgba(26,23,20,.28);
       flex-shrink: 0;
     }
     .opening__reserve {
