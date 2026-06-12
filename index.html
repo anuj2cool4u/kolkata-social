@@ -193,7 +193,6 @@
       background-image: url('assets/images/venue/FrontDoorView.jpeg');
       background-size: cover;
       background-position: center center;
-      opacity: 1;
       pointer-events: none;
       z-index: 0;
     }
@@ -202,11 +201,12 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(244,241,235,0.55);
+      background: rgba(244,241,235,0.60);
       pointer-events: none;
       z-index: 1;
     }
-    .opening > * { position: relative; z-index: 2; }
+    /* Content sits above photo and overlay — exclude the bg div */
+    .opening > *:not(.opening__bg-photo) { position: relative; z-index: 2; }
     .opening__loc {
       font-size: .68rem;
       letter-spacing: .22em;
