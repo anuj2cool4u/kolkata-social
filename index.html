@@ -177,14 +177,18 @@
        OPENING
     ───────────────────────────────────────── */
     .opening {
-      padding: calc(var(--nav-h) + 8rem) 2.5rem 7rem;
-      border-bottom: 1px solid var(--rule);
-      display: flex;
-      flex-direction: column;
-      gap: 0;
+      min-height: 78vh;
+      padding: 0;
+      display: block;
       background-color: var(--cream);
       position: relative;
       overflow: hidden;
+    }
+    /* screen-reader-only — keeps the H1 for SEO/accessibility, hidden on the photo */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0 0 0 0); white-space: nowrap; border: 0;
     }
     /* Hero background photo */
     .opening__bg-photo {
@@ -196,60 +200,31 @@
       pointer-events: none;
       z-index: 0;
     }
-    /* Directional scrim: dense where text sits (top-left + bottom),
-       light elsewhere so the photo stays alive */
-    .opening::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        /* bottom band — hours / address / reserve row */
-        linear-gradient(to top,
-          rgba(244,241,235,.96) 0%,
-          rgba(244,241,235,.88) 16%,
-          rgba(244,241,235,0)   38%),
-        /* left-to-right — headline block */
-        linear-gradient(100deg,
-          rgba(244,241,235,.94) 0%,
-          rgba(244,241,235,.82) 40%,
-          rgba(244,241,235,.38) 72%,
-          rgba(244,241,235,.22) 100%);
-      pointer-events: none;
-      z-index: 1;
-    }
-    /* Content sits above photo and overlay — exclude the bg div */
-    .opening > *:not(.opening__bg-photo) { position: relative; z-index: 2; }
-    .opening__loc {
-      font-size: .68rem;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: rgba(26,23,20,.72); /* over photo: muted gray fails, use translucent ink */
-      margin-bottom: 2.25rem;
-    }
-    .opening__title {
-      font-family: var(--serif);
-      font-size: clamp(4.5rem, 11vw, 11rem);
-      font-weight: 300;
-      font-style: italic;
-      line-height: .95;
-      margin-bottom: 5rem;
-    }
-    .opening__row {
+    /* Single-row caption/hours/reserve bar — sits below the photo on cream */
+    .opening__bar {
       display: flex;
       align-items: center;
-      gap: 2.5rem;
+      gap: 1.25rem 2rem;
       flex-wrap: wrap;
-      border-top: 1px solid rgba(26,23,20,.28); /* hairline at 12% disappears over photo */
-      padding-top: 2rem;
+      padding: 1.5rem 2.5rem;
+      background: var(--cream);
+      border-bottom: 1px solid var(--rule);
+    }
+    .opening__loc {
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--ink);
+      font-weight: 500;
     }
     .opening__detail {
       font-size: .75rem;
       letter-spacing: .08em;
-      color: rgba(26,23,20,.85); /* near-ink: small type needs max contrast on imagery */
+      color: var(--muted);
     }
     .opening__sep {
       width: 1px; height: 1rem;
-      background: rgba(26,23,20,.28);
+      background: var(--rule);
       flex-shrink: 0;
     }
     .opening__reserve {
@@ -813,13 +788,14 @@
       .nav { padding: 0 1.5rem; }
       .nav__links { display: none; }
       .nav__burger { display: flex; }
-      .opening {
-        padding: calc(var(--nav-h) + 3rem) 1.5rem 3.5rem;
+      .opening { min-height: 60vh; }
+      .opening__bar {
+        padding: 1.25rem 1.5rem;
+        gap: .6rem 1.25rem;
       }
-      .opening__title { font-size: clamp(3rem, 14vw, 5rem); margin-bottom: 2.5rem; }
-      .opening__row   { gap: 1.1rem; }
-      .opening__sep   { display: none; }
-      .opening__reserve { margin-left: 0; margin-top: .5rem; }
+      .opening__sep { display: none; }
+      .opening__loc { width: 100%; }
+      .opening__reserve { margin-left: 0; margin-top: .35rem; }
       .story {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -931,22 +907,20 @@
   <!-- ══════════════ OPENING ═════════════════ -->
   <section class="opening">
     <div class="opening__bg-photo" aria-hidden="true"></div>
-    <p class="opening__loc">Bengali Restaurant &amp; Bar · Newtown, Sydney</p>
-    <h1 class="opening__title" data-reveal>
-      A love letter<br>to Bengali<br>cuisine.
-    </h1>
-    <div class="opening__row">
-      <span class="opening__detail">Happy Hour · Wed – Sat · 4 – 5:30pm</span>
-      <span class="opening__sep" aria-hidden="true"></span>
-      <span class="opening__detail">Dinner · Tue – Sat · 5:30 – 10pm</span>
-      <span class="opening__sep" aria-hidden="true"></span>
-      <span class="opening__detail">528–528A King St, Newtown</span>
-      <a href="https://www.opentable.com.au/r/kolkata-social-newtown-reservations-newtown?restref=303728&lang=en-AU&ot_source=Restaurant%20website" class="opening__reserve" target="_blank" rel="noopener"
-        >
-        Reserve a Table →
-      </a>
-    </div>
+    <h1 class="opening__title sr-only">A love letter to Bengali cuisine.</h1>
   </section>
+
+  <!-- Caption / hours / reserve — single row below the hero photo -->
+  <div class="opening__bar">
+    <span class="opening__loc">Bengali Restaurant &amp; Bar · Newtown, Sydney</span>
+    <span class="opening__sep" aria-hidden="true"></span>
+    <span class="opening__detail">Happy Hour · Wed – Sat · 4 – 5:30pm</span>
+    <span class="opening__sep" aria-hidden="true"></span>
+    <span class="opening__detail">Dinner · Tue – Sat · 5:30 – 10pm</span>
+    <span class="opening__sep" aria-hidden="true"></span>
+    <span class="opening__detail">528–528A King St, Newtown</span>
+    <a href="https://www.opentable.com.au/r/kolkata-social-newtown-reservations-newtown?restref=303728&lang=en-AU&ot_source=Restaurant%20website" class="opening__reserve" target="_blank" rel="noopener">Reserve a Table →</a>
+  </div>
 
   <!-- ══════════════ STORY ═════════════════ -->
   <!-- TODO: Owner to confirm: Chef name, prior kitchens (Firedoor, Raja), team details -->
@@ -1079,6 +1053,8 @@
 
       <!-- Enquiry form -->
       <form class="enquiry-form" id="enquiry-form" action="https://formspree.io/f/mwvzglon" method="POST" onsubmit="handleEnquiry(event)">
+        <input type="hidden" name="_subject" value="New Event / Private Dining Enquiry — Kolkata Social">
+        <input type="hidden" name="_to" value="enquiries@kolkatasocial.com.au">
         <div class="enquiry-form__row">
           <div class="enquiry-form__field">
             <label for="eq-name">Name</label>
