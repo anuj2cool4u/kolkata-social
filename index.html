@@ -249,10 +249,8 @@
        STORY
     ───────────────────────────────────────── */
     .story {
-      display: grid;
-      grid-template-columns: 5fr 7fr;
-      gap: 5rem;
-      align-items: start;
+      display: block;
+      max-width: 640px;
       padding: 5.5rem 2.5rem;
     }
     .story__heading {
@@ -797,11 +795,8 @@
       .opening__loc { width: 100%; }
       .opening__reserve { margin-left: 0; margin-top: .35rem; }
       .story {
-        grid-template-columns: 1fr;
-        gap: 2rem;
         padding: 4rem 1.5rem;
       }
-      .story__heading { position: static; }
       .food { padding: 3.5rem 0; }
       .food__header { padding: 0 1.5rem 2rem; }
       .rail { padding: 0 1.5rem 1rem; gap: .5rem; }
@@ -925,11 +920,6 @@
   <!-- ══════════════ STORY ═════════════════ -->
   <!-- TODO: Owner to confirm: Chef name, prior kitchens (Firedoor, Raja), team details -->
   <div class="story" id="story">
-
-    <h2 class="story__heading" data-reveal>
-      A love letter<br>to Bengali<br>cuisine.<br>
-      <em>Through a third<br>culture lens.</em>
-    </h2>
 
     <div class="story__body" data-reveal>
       <p>
