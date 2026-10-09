@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>What's On — Kolkata Social</title>
-  <meta name="description" content="Events, activations and collabs at Kolkata Social, Newtown. Thali Tuesdays, Happy Hour and more.">
+  <meta name="description" content="Durga Pujo at Kolkata Social, Newtown: 17–20 October — Majama Wines dinner, Indian bakery &amp; sandwich shop, pay-what-you-can Monday and a special pujo thali. Plus Thali Tuesdays and Happy Hour.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -166,6 +166,92 @@
     }
     .collab-item__link:hover { color: var(--muted); border-color: var(--muted); }
 
+    /* ── DURGA PUJO PROGRAMME (17–20 Oct 2026) ──
+       Lead block inside Collabs & upcoming. Remove or move to a
+       "past events" area once the programme is over. */
+    .pujo { scroll-margin-top: calc(var(--nav-h) + 1.5rem); }
+    .pujo__intro {
+      display: grid; grid-template-columns: 1fr minmax(240px, 360px);
+      gap: 4rem; align-items: end;
+      padding-bottom: 3.5rem; border-bottom: 1px solid var(--rule);
+    }
+    .pujo__kicker {
+      font-size: .62rem; letter-spacing: .24em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 1.25rem;
+    }
+    .pujo__title {
+      font-family: var(--serif); font-size: clamp(2.6rem, 5.5vw, 5rem);
+      font-weight: 300; line-height: 1; margin-bottom: 1.75rem;
+    }
+    .pujo__title em { font-style: italic; }
+    .pujo__lede {
+      font-family: var(--serif); font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+      font-weight: 300; font-style: italic; line-height: 1.55; max-width: 34ch;
+    }
+    .pujo__film { aspect-ratio: 4 / 5; background: #e9e4da; }
+    .pujo__film video { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+    .pujo-day {
+      display: grid; grid-template-columns: minmax(240px, 360px) 1fr;
+      gap: 4rem; align-items: start;
+      padding: 3.5rem 0; border-bottom: 1px solid var(--rule);
+    }
+    .pujo-day:nth-of-type(even) { grid-template-columns: 1fr minmax(240px, 360px); }
+    .pujo-day:nth-of-type(even) .pujo-day__poster { order: 2; }
+    .pujo-day__poster { aspect-ratio: 4 / 5; background: #e9e4da; }
+    .pujo-day__date {
+      font-family: var(--serif); font-size: 1.15rem; font-weight: 300; font-style: italic;
+      color: var(--muted); margin-bottom: .75rem;
+    }
+    .pujo-day__name {
+      font-family: var(--serif); font-size: clamp(2rem, 3.2vw, 3rem);
+      font-weight: 300; line-height: 1.05; margin-bottom: 1.5rem;
+    }
+    .pujo-day__name em { font-style: italic; }
+    .pujo-day__body p {
+      font-size: 1rem; line-height: 1.9; color: var(--muted); max-width: 52ch;
+    }
+    .pujo-day__body p + p { margin-top: 1rem; }
+    .pujo-day__body a:not(.pujo-day__cta) { color: var(--ink); border-bottom: 1px solid var(--rule); transition: border-color .2s; }
+    .pujo-day__body a:not(.pujo-day__cta):hover { border-color: var(--ink); }
+    .pujo-day__note {
+      margin-top: 1.5rem; padding-left: 1.1rem; border-left: 2px solid var(--ink);
+      font-size: .9rem; line-height: 1.8; color: var(--ink); max-width: 52ch;
+    }
+    .pujo-day__note strong { font-weight: 400; }
+    .pujo-day__cta {
+      display: inline-block; margin-top: 2rem;
+      font-size: .68rem; letter-spacing: .16em; text-transform: uppercase;
+      border-bottom: 1px solid var(--ink); padding-bottom: 2px; transition: color .2s, border-color .2s;
+    }
+    .pujo-day__cta:hover { color: var(--muted); border-color: var(--muted); }
+
+    /* Thali menu — HTML version of the poster so it's readable on phones and indexable */
+    .thali-menu { list-style: none; margin-top: 1.75rem; border-top: 1px solid var(--rule); max-width: 52ch; }
+    .thali-menu li {
+      display: grid; grid-template-columns: minmax(9rem, auto) 1fr; gap: 1.25rem;
+      padding: .7rem 0; border-bottom: 1px solid var(--rule); font-size: .9rem; line-height: 1.6;
+    }
+    .thali-menu b {
+      font-weight: 400; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; padding-top: .2rem;
+    }
+    .thali-menu span { color: var(--muted); }
+    .thali-menu .thali-menu__choice { border-bottom: none; }
+    .thali-menu .thali-menu__or {
+      display: block; padding: 0 0 .1rem; border-bottom: none;
+      font-family: var(--serif); font-style: italic; color: var(--muted); font-size: 1rem;
+    }
+
+    .collabs__follow {
+      margin-top: 3rem; font-size: .8rem; color: var(--muted); line-height: 1.8;
+    }
+    .collabs__follow a { color: var(--ink); border-bottom: 1px solid var(--ink); padding-bottom: 1px; }
+
+    .recurring__note {
+      margin-top: 1.25rem; font-size: .85rem; color: var(--ink); line-height: 1.7;
+    }
+    .recurring__note a { border-bottom: 1px solid var(--ink); padding-bottom: 1px; }
+
     /* ── FOOTER ── */
     .footer {
       border-top: 1px solid var(--rule); padding: 1.5rem 2.5rem;
@@ -191,6 +277,13 @@
       .collabs { padding: 4rem 1.5rem; }
       .collab-item { grid-template-columns: 1fr; gap: .75rem; }
       .collab-item__link { align-self: flex-start; }
+      .pujo__intro { grid-template-columns: 1fr; gap: 2.5rem; padding-bottom: 2.5rem; }
+      .pujo__film { max-width: 420px; }
+      .pujo-day,
+      .pujo-day:nth-of-type(even) { grid-template-columns: 1fr; gap: 2rem; padding: 2.75rem 0; }
+      .pujo-day:nth-of-type(even) .pujo-day__poster { order: 0; }
+      .pujo-day__poster { max-width: 420px; }
+      .thali-menu li { grid-template-columns: 8.5rem 1fr; gap: .9rem; }
       .footer { flex-direction: column; align-items: center; text-align: center; padding: 1.5rem; }
       .footer__social { justify-content: center; }
     }
@@ -231,32 +324,6 @@
     <h1 class="hero__title">What's<br><em>on.</em></h1>
   </section>
 
-  <!-- ── RECURRING EVENTS ── -->
-  <section class="recurring">
-    <p class="recurring__label">Every Week</p>
-    <div class="recurring__grid">
-
-      <div class="recurring__item">
-        <p class="recurring__day">Every Tuesday · From 5:30pm</p>
-        <h2 class="recurring__name">Thali<br><em>Tuesday</em></h2>
-        <p class="recurring__desc">
-          A full Bengali thali — everything on one plate, the way it was always meant to be eaten.
-          A rotating selection of dishes that changes week to week, guided by the season.
-        </p>
-      </div>
-
-      <div class="recurring__item">
-        <p class="recurring__day">Wed – Sat · 4 – 5:30pm</p>
-        <h2 class="recurring__name">Happy<br><em>Hour</em></h2>
-        <p class="recurring__desc">
-          Curated cocktails and small bites before the evening begins.
-          The perfect way to start your night in Newtown.
-        </p>
-      </div>
-
-    </div>
-  </section>
-
   <!-- ── COLLABS & UPCOMING ── -->
   <section class="collabs">
     <div class="collabs__header">
@@ -264,21 +331,140 @@
       <span class="collabs__hint">More being planned</span>
     </div>
 
-    <!-- TODO: Replace placeholder below with real upcoming events as they're confirmed -->
-    <div class="collabs__empty">
-      <p class="collabs__empty-title">Watch this space.</p>
-      <p class="collabs__empty-body">
-        We're cooking up collaborations and special events.
-        Follow us on Instagram to be the first to know.
-      </p>
-      <a href="https://www.instagram.com/kolkatasocial_?igsh=MTRoOXhkc2ZidXk0cQ%3D%3D&utm_source=qr"
-         target="_blank" rel="noopener"
-         style="font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;border-bottom:1px solid var(--ink);padding-bottom:2px;margin-top:.5rem;">
-        Follow on Instagram →
-      </a>
+    <!-- ── DURGA PUJO PROGRAMME · 17–20 Oct 2026 ──
+         Posters live in assets/images/events/durga-pujo/.
+         The homepage popup links here via whatson.html#durga-pujo. -->
+    <div class="pujo" id="durga-pujo">
+
+      <div class="pujo__intro">
+        <div>
+          <p class="pujo__kicker">Durga Pujo · 17 – 20 October</p>
+          <h3 class="pujo__title">Kolkata Social<br>Durga Pujo <em>Programme.</em></h3>
+          <p class="pujo__lede">
+            We're so excited to celebrate the festive season this year with a four-day programme
+            filled with collaborations, friendship, community and, of course, delicious food.
+          </p>
+        </div>
+        <div class="pujo__film">
+          <video src="assets/images/events/durga-pujo/dp-programme.mp4"
+                 poster="assets/images/events/durga-pujo/dp-programme-poster.jpg"
+                 muted loop playsinline autoplay preload="metadata"
+                 aria-label="Kolkata Social Durga Pujo Programme — red fish logos over a Kolkata flower market"></video>
+        </div>
+      </div>
+
+      <!-- Saturday 17 -->
+      <article class="pujo-day">
+        <div class="pujo-day__poster">
+          <img src="assets/images/events/durga-pujo/dp-17-majama.jpg" width="900" height="1125" loading="lazy"
+               alt="Poster: Kolkata Social × Majama Wines, Saturday 17 October, 8 course set menu — a celebration of Indian heritage, Hunter wines and good company">
+        </div>
+        <div class="pujo-day__body">
+          <p class="pujo-day__date">Saturday 17 October</p>
+          <h4 class="pujo-day__name">Majama Wines at<br><em>Kolkata Social.</em></h4>
+          <p>
+            An 8-course special dinner to celebrate Durga Pujo. We're bringing together a set menu
+            inspired by the flavours, rituals and memories that make pujo special. Pairing the menu
+            is a selection of wines from
+            <a href="https://www.instagram.com/majama_wines/" target="_blank" rel="noopener">@majama_wines</a>.
+          </p>
+          <p>
+            Roger will be at Kolkata Social on the night, pouring their delicious drops and talking
+            about the stories and processes behind them.
+          </p>
+          <a class="pujo-day__cta" href="https://www.opentable.com.au/r/kolkata-social-newtown-reservations-newtown?restref=303728&lang=en-AU&ot_source=Restaurant%20website" target="_blank" rel="noopener">Reserve →</a>
+        </div>
+      </article>
+
+      <!-- Sunday 18 -->
+      <article class="pujo-day">
+        <div class="pujo-day__poster">
+          <img src="assets/images/events/durga-pujo/dp-18-bakery.jpg" width="900" height="1125" loading="lazy"
+               alt="Poster: Kolkata Social × Aniruddha Bhosekar × Nest — Indian bakery and sandwich shop, 18 October, Saptami">
+        </div>
+        <div class="pujo-day__body">
+          <p class="pujo-day__date">Sunday 18 October · Saptami</p>
+          <h4 class="pujo-day__name">Indian bakery &amp;<br><em>sandwich shop.</em></h4>
+          <p>
+            We're turning the restaurant into an Indian bakery and sandwich shop for one Sunday!
+            We're teaming up with our longtime friend
+            <a href="https://www.instagram.com/aniruddha_bhosekar/" target="_blank" rel="noopener">@aniruddha_bhosekar</a>
+            to curate a delicious menu.
+          </p>
+          <p>
+            We'll have a tab running with our friends
+            <a href="https://www.instagram.com/nest_newtown/" target="_blank" rel="noopener">@nest_newtown</a>
+            for coffees.
+          </p>
+          <p class="pujo-day__note">
+            <strong>Free coffee for the first 30.</strong> Grab a bite from us on the day, show your
+            fish-logo stamped token at Nest, and the coffee's on us.
+          </p>
+          <a class="pujo-day__cta" href="https://www.opentable.com.au/r/kolkata-social-newtown-reservations-newtown?restref=303728&lang=en-AU&ot_source=Restaurant%20website" target="_blank" rel="noopener">Reserve →</a>
+        </div>
+      </article>
+
+      <!-- Monday 19 -->
+      <article class="pujo-day">
+        <div class="pujo-day__poster">
+          <img src="assets/images/events/durga-pujo/dp-19-pay-what-you-can.jpg" width="900" height="1125" loading="lazy"
+               alt="Poster: Eat what you want, pay what you can — 19 October, beside an ochre and rust batik textile">
+        </div>
+        <div class="pujo-day__body">
+          <p class="pujo-day__date">Monday 19 October</p>
+          <h4 class="pujo-day__name">Eat what you want,<br><em>pay what you can.</em></h4>
+          <p>
+            In the spirit of generosity during a cost-of-living crisis, we're opening our doors for
+            guests to eat what you want and pay what you can. We want to celebrate hospitality and
+            remind people of the joy of simply sharing a meal together.
+          </p>
+          <p class="pujo-day__note">
+            <strong>Good to know:</strong> drinks are on you and will be charged as per the menu.
+            <strong>Reservations are mandatory.</strong>
+          </p>
+          <a class="pujo-day__cta" href="https://www.opentable.com.au/r/kolkata-social-newtown-reservations-newtown?restref=303728&lang=en-AU&ot_source=Restaurant%20website" target="_blank" rel="noopener">Reserve →</a>
+        </div>
+      </article>
+
+      <!-- Tuesday 20 -->
+      <article class="pujo-day" id="pujo-thali">
+        <div class="pujo-day__poster">
+          <img src="assets/images/events/durga-pujo/dp-20-thali.jpg" width="900" height="1125" loading="lazy"
+               alt="Poster: Durga Pujo Special Thali, 20 October, listing the dishes shown alongside">
+        </div>
+        <div class="pujo-day__body">
+          <p class="pujo-day__date">Tuesday 20 October</p>
+          <h4 class="pujo-day__name">Durga Pujo<br><em>thali.</em></h4>
+          <p>
+            A special Thali Tuesday to celebrate Durga Pujo. Dishes that evoke unbridled nostalgia:
+            a little reminder of home on the south end of King Street.
+          </p>
+          <ul class="thali-menu" aria-label="Durga Pujo thali menu">
+            <li><b>Vegetable chop</b><span>beetroot croquette</span></li>
+            <li><b>Basanti pulao</b><span>saffron Basmati rice</span></li>
+            <li><b>Khichuri</b><span>spiced rice and lentils, coconut masala</span></li>
+            <li><b>Alu'r dom</b><span>potatoes in a rich tomato sauce</span></li>
+            <li><b>Coconut zucchini</b><span><em>my grandmother's recipe</em></span></li>
+            <li><b>Chola'r dal</b><span>raisins, bhaja moshla</span></li>
+            <li><b>Luchi</b><span>fried flatbread</span></li>
+            <li class="thali-menu__choice"><b>Goat kosha</b><span>slow cooked goat on the bone</span></li>
+            <li class="thali-menu__or" aria-hidden="true">or</li>
+            <li><b>Fish paturi</b><span>banana leaf wrapped barramundi</span></li>
+            <li><b>Payesh</b><span>palm sugar rice pudding</span></li>
+            <li><b>Baked sandesh</b><span>baked saffron ricotta</span></li>
+          </ul>
+          <a class="pujo-day__cta" href="https://www.opentable.com.au/r/kolkata-social-newtown-reservations-newtown?restref=303728&lang=en-AU&ot_source=Restaurant%20website" target="_blank" rel="noopener">Reserve →</a>
+        </div>
+      </article>
+
     </div>
 
-    <!-- TEMPLATE: uncomment and duplicate this block to add a collab event
+    <p class="collabs__follow">
+      More collaborations are on the way.
+      <a href="https://www.instagram.com/kolkatasocial_?igsh=MTRoOXhkc2ZidXk0cQ%3D%3D&utm_source=qr" target="_blank" rel="noopener">Follow us on Instagram →</a>
+    </p>
+
+    <!-- TEMPLATE: duplicate this block for smaller one-off collabs
     <div class="collabs__list">
       <div class="collab-item">
         <p class="collab-item__date">Fri 20 Jun</p>
@@ -291,6 +477,34 @@
     </div>
     -->
 
+  </section>
+
+  <!-- ── RECURRING EVENTS ── -->
+  <section class="recurring">
+    <p class="recurring__label">Every Week</p>
+    <div class="recurring__grid">
+
+      <div class="recurring__item">
+        <p class="recurring__day">Every Tuesday · From 5:30pm</p>
+        <h2 class="recurring__name">Thali<br><em>Tuesday</em></h2>
+        <p class="recurring__desc">
+          A full Bengali thali — everything on one plate, the way it was always meant to be eaten.
+          A rotating selection of dishes that changes week to week, guided by the season.
+        </p>
+        <!-- Remove after 20 Oct 2026 -->
+        <p class="recurring__note">Tue 20 Oct is our Durga Pujo special. <a href="#pujo-thali">See the menu →</a></p>
+      </div>
+
+      <div class="recurring__item">
+        <p class="recurring__day">Wed – Sat · 4 – 5:30pm</p>
+        <h2 class="recurring__name">Happy<br><em>Hour</em></h2>
+        <p class="recurring__desc">
+          Curated cocktails and small bites before the evening begins.
+          The perfect way to start your night in Newtown.
+        </p>
+      </div>
+
+    </div>
   </section>
 
   <!-- ── FOOTER ── -->
@@ -307,7 +521,18 @@
 
   <script>
     if (history.scrollRestoration) history.scrollRestoration = 'manual';
-    window.scrollTo(0, 0);
+    // Start at the top, unless arriving at an anchor (e.g. #durga-pujo from the homepage popup)
+    const hashTarget = location.hash && document.querySelector(location.hash);
+    if (hashTarget) {
+      window.addEventListener('load', () => hashTarget.scrollIntoView());
+    } else {
+      window.scrollTo(0, 0);
+    }
+    // Respect reduced-motion: don't loop the programme film
+    const pujoFilm = document.querySelector('.pujo__film video');
+    if (pujoFilm && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      pujoFilm.removeAttribute('autoplay'); pujoFilm.pause();
+    }
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 20); }, { passive: true });
     const burger = document.getElementById('burger');
